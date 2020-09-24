@@ -104,7 +104,7 @@ class ClassController extends Controller
         $saveMateries = new Materies;
         $saveMateries->idclass = $saveClasses->idclass;
         $saveMateries->materi = $request->materi;
-        // return $saveMateries;
+        // return $saveMateries; tes tes
         $saveMateries->save();
 
         return redirect('lecture/class');
