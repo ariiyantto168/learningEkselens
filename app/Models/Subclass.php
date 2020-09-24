@@ -3,17 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Categories extends Model
+class Subclass extends Model
 {
     protected $dates = ['deleted_at'];
 
-    protected $table = 'categories';
-    protected $primaryKey = 'idcategories';
+    protected $table = 'subclass';
+    protected $primaryKey = 'idsubclass';
 
     protected $fillable = [
-        'name',
+        'headmateri',
     ];
+    
+    
 }

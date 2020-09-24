@@ -16,4 +16,18 @@ class Classes extends Model
     protected $fillable = [
         'name','images','demo'
     ];
+
+    public function categories()
+    {
+        return $this->belongsTo('App\Models\Categories', 'idcategories');
+    }
+
+    public function subclass()
+    {
+        return $this->hasMany('App\Models\Subclass','idclass');
+    }
+    public function materies()
+    {
+        return $this->hasMany('App\Models\Materies','idclass');
+    }
 }

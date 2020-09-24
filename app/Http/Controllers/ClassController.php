@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Subclass;
+use App\Models\Materies;
 use App\Models\Classes;
+use App\Models\Categories;
 use Image;
 use File;
 
@@ -13,7 +16,7 @@ class ClassController extends Controller
     public function index()
     {
         $contents = [
-            'classes' => Classes::all()
+            'classes' => Classes::with('categories','subclass','materies')->get(),
         ];
 
         // return $contents;
@@ -33,6 +36,7 @@ class ClassController extends Controller
     public function create_page()
     {
         $content = [
+            'categories' => Categories::all(),
         ];
         $pagecontent = view('contents.class.create', $content);
 
@@ -49,6 +53,7 @@ class ClassController extends Controller
 
     public function create_save(Request $request)
     {
+        // return $request->all();
         // return $request->file('images');
 
         $request->validate([
@@ -77,9 +82,31 @@ class ClassController extends Controller
         // http://cdn.local/demo/Lr72kRIl7heVERSV0lrY.mp4
         $saveClasses = new Classes;
         $saveClasses->name = $request->name;
+        $saveClasses->idcategories = $request->idcategories;
         $saveClasses->images = $filename;
         $saveClasses->demo = $filevideo;
+        // return $saveClasses;
         $saveClasses->save();
+
+        $saveSubclass = new Subclass;
+        $saveSubclass->idclass = $saveClasses->idclass;
+        $saveSubclass->headmateri = $request->headmateri;
+        // return $saveSubclass;
+        $saveSubclass->save();
+
+        $saveSubclass = new Subclass;
+        $saveSubclass->idclass = $saveClasses->idclass;
+        $saveSubclass->headmateri = $request->headmateri;
+        // return $saveSubclass;
+        $saveSubclass->save();
+        
+
+        $saveMateries = new Materies;
+        $saveMateries->idclass = $saveClasses->idclass;
+        $saveMateries->materi = $request->materi;
+        // return $saveMateries;
+        $saveMateries->save();
+
         return redirect('lecture/class');
     }
 }

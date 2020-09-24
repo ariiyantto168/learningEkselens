@@ -22,16 +22,18 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="card">
+        <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Create</h3>
             </div>
             <div class="card-body">
-                <form role="form" method="post" action="{{ url('lecture/categories/create-new') }}">
+                <form role="form" class="form-horizontal" method="post" action="{{ url('lecture/categories/create-new') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
-                        <input type="text" name="name" class="form-control">
+                      <label for="exampleInputEmail1">Name</label>
+                        <div class="col-sm-5">
+                          <input type="text" name="name" placeholder="Name" class="form-control">
+                        </div>
                     </div>
                         
                     <div class="card-footer">

@@ -20,7 +20,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="card">
+        <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Index</h3>
                 <div class="float-right"><i class="fas fa-plus size:2x"></i> <a href="{{ url('lecture/categories/create-new') }}">Create New</a></div>

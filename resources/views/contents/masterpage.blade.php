@@ -27,6 +27,9 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ env('ADMINLTE3') }}plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{ env('ADMINLTE3') }}plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ env('ADMINLTE3') }}plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="{{ env('ADMINLTE3') }}plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- jQuery -->
@@ -37,6 +40,10 @@
     .textbox{
         background-color: #6c757d !important;
       }
+
+    .blue{
+      background-color: #020114 !important;
+    }
 </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -90,7 +97,8 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  {{-- <aside class="main-sidebar sidebar-dark-primary elevation-4"> --}}
+  <aside class="main-sidebar blue elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{ env('ADMINLTE3') }}dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -265,7 +273,16 @@
 <script src="{{ env('ADMINLTE3') }}dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ env('ADMINLTE3') }}dist/js/demo.js"></script>
+<!-- Select2 -->
+<script src="{{ env('ADMINLTE3')}}plugins/select2/js/select2.full.min.js"></script>
 <script>
+  //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
     $(function () {
       $("#example1").DataTable({
         "responsive": true,
