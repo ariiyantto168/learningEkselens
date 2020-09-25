@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Subclass;
+use App\Models\Hilights;
 use App\Models\Materies;
 use App\Models\Classes;
 use App\Models\Categories;
@@ -16,7 +17,7 @@ class ClassController extends Controller
     public function index()
     {
         $contents = [
-            'classes' => Classes::with('categories','subclass','materies')->get(),
+            'classes' => Classes::with('categories','subclass','materies','hilights')->get(),
         ];
 
         // return $contents;
@@ -85,6 +86,8 @@ class ClassController extends Controller
         $saveClasses->idcategories = $request->idcategories;
         $saveClasses->images = $filename;
         $saveClasses->demo = $filevideo;
+        $saveClasses->tutor = $request->tutor;
+        $saveClasses->description = $request->description;
         // return $saveClasses;
         $saveClasses->save();
 
@@ -94,18 +97,17 @@ class ClassController extends Controller
         // return $saveSubclass;
         $saveSubclass->save();
 
-        $saveSubclass = new Subclass;
-        $saveSubclass->idclass = $saveClasses->idclass;
-        $saveSubclass->headmateri = $request->headmateri;
-        // return $saveSubclass;
-        $saveSubclass->save();
-        
-
         $saveMateries = new Materies;
         $saveMateries->idclass = $saveClasses->idclass;
         $saveMateries->materi = $request->materi;
         // return $saveMateries; tes tes
         $saveMateries->save();
+
+        $saveHilights = new Hilights;
+        $saveHilights->idclass = $saveClasses->idclass;
+        $saveHilights->namehilights = $request->namehilights; 
+        // return $saveHilights;
+        $saveHilights->save();
 
         return redirect('lecture/class');
     }

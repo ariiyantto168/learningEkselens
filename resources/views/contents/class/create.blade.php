@@ -65,6 +65,21 @@
                       </div>
                   </div>
 
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Tutor</label>
+                    <div class="col-sm-6">
+                      <textarea name="tutor" rows="3"  class="form-control" required></textarea>
+                    </div>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Description</label>
+                    <div class="col-sm-6">
+                      <textarea name="description" rows="3"  class="form-control" required></textarea>
+                    </div>
+                  </div>
+
+                  {{-- class lecture --}}
                   <div class="card card-primary">
                     <div class="card-header">
                       <h3 class="card-title">Materi Lecture</h3>
@@ -93,9 +108,28 @@
                       </div>
 
                     </div>
+                  </div>
+
+                  {{-- hilight lecture --}}
+                  <div class="card card-primary">
+                    <div class="card-header">
+                      <h3 class="card-title">Hilight Lecture</h3>
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                      </div>
+                    </div>
+
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Hilights Class</label>
+                        <div class="col-sm-6">
+                          <textarea name="namehilights" rows="2"  class="form-control" required></textarea>
+                        </div> 
+                      </div>
+                    </div>
 
                   </div>
-                  
                       
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>

@@ -19,6 +19,8 @@ class CreateClassTable extends Migration
             $table->string('name');
             $table->string('images')->nullable();
             $table->string('demo')->nullable();
+            $table->text('tutor')->nullable();
+            $table->text('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

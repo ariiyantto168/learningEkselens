@@ -14,7 +14,7 @@ class Classes extends Model
     protected $primaryKey = 'idclass';
 
     protected $fillable = [
-        'name','images','demo'
+        'name','images','demo','tutor','description'
     ];
 
     public function categories()
@@ -29,5 +29,9 @@ class Classes extends Model
     public function materies()
     {
         return $this->hasMany('App\Models\Materies','idclass');
+    }
+    public function hilights()
+    {
+        return $this->hasMany('App\Models\Hilights','idclass');
     }
 }
