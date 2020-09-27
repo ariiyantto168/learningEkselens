@@ -52,7 +52,7 @@ class ClassController extends Controller
         return view('contents.masterpage', $pagemain);
     }
 
-    public function create_save(Request $request)
+    public function create_save(Classes $classes, Request $request)
     {
         // return $request->all();
         // return $request->file('images');
@@ -103,11 +103,14 @@ class ClassController extends Controller
         // return $saveMateries; tes tes
         $saveMateries->save();
 
-        $saveHilights = new Hilights;
-        $saveHilights->idclass = $saveClasses->idclass;
-        $saveHilights->namehilights = $request->namehilights; 
-        // return $saveHilights;
-        $saveHilights->save();
+        $count = count($request->namehilights);
+        for ($i=0; $i < $count ; $i++) { 
+            $saveHilights = new Hilights;
+            $saveHilights->idclass = $saveClasses->idclass;
+            $saveHilights->namehilights = $request->namehilights[$i];
+            $saveHilights->save();
+        }
+
 
         return redirect('lecture/class');
     }

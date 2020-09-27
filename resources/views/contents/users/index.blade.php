@@ -48,6 +48,12 @@
                             <td>
                                 @if ($user->role == 'a')
                                     Admin
+                                @elseif($user->role == 'c')
+                                    Admin Class
+                                @elseif($user->role == 'b')
+                                    Admin Business
+                                @elseif($user->role == 'i')
+                                    Instructor
                                 @else
                                     User
                                 @endif

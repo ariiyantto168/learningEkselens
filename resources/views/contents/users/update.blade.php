@@ -40,7 +40,10 @@
                         <label for="exampleFormControlSelect1">Role</label>
                         <select class="form-control" name="role" id="exampleFormControlSelect1">
                             <option value="0"> -- Select Role -- </option>
-                            <option value="a" @if($users->role == 'a') selected @endif>Admin</option>
+                            <option value="a" @if($users->role == 'a') selected @endif>Super Admin</option>
+                            <option value="c" @if($users->role == 'c') selected @endif>Admin Class</option>
+                            <option value="b" @if($users->role == 'b') selected @endif>Admin BUsines</option>
+                            <option value="i" @if($users->role == 'i') selected @endif>Instructor</option>
                             <option value="u" @if($users->role == 'u') selected @endif>User</option>
                         </select>
                         </div>

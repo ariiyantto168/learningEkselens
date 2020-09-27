@@ -121,12 +121,22 @@
                     </div>
 
                     <div class="card-body">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Hilights Class</label>
-                        <div class="col-sm-6">
-                          <textarea name="namehilights" rows="2"  class="form-control" required></textarea>
-                        </div> 
-                      </div>
+                      <button type="button" id="addHilights" class="btn btn-block btn-outline-primary btn-sm" style="width: 60px;">Add</button>
+                      <br>
+
+                      <table id="tableHilights" class="table">
+                        <tbody>
+                          <tr>
+                            <td style="text-align=center">
+                              <label>1</label>
+                            </td>
+                            <td style="text-align=center">
+                              <label for="exampleInputEmail1">Hilights Class</label>
+                              <textarea name="namehilights[]" style="width: 500px;" id="namehilights_1"  class="form-control" required></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
 
                   </div>
@@ -139,5 +149,33 @@
       </div>  
   
     </div>
+    <input type="hidden" id="appenhilights" value="2">
   </section>
-</div>
+</div> );
+
+<script>
+  //delete row finsih
+  $('#tableHilights').on('click', '.del' ,function(){
+      $(this).closest('tr').remove();
+    });
+
+
+    $('#addHilights').on('click', function(){
+      var ais = $('#appenhilights').val();
+      $('#appenhilights').val(parseInt(ais)+1);
+
+      //add row
+    $('#tableHilights').append('<tr>'
+      +'<td style="text-align=center">'
+        +'<label>'+ais+'</label><br>'
+        +'<a class="btn btn-xs del"><i class="fas fa-trash" aria-hidden="true"></i></a>'
+      +'</td>'
+      +'<td style="text-align=center">'
+        +'<label for="exampleInputEmail1">Hilights Class</label>'
+        +'<textarea name="namehilights[]" style="width: 500px;" id="namehilights_'+ais+'"  class="form-control" required></textarea>'
+      +'</td>' 
+    +'</tr>'
+    );
+
+    })
+</script>
