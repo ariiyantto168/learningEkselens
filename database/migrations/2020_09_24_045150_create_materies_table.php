@@ -15,7 +15,7 @@ class CreateMateriesTable extends Migration
     {
         Schema::create('materies', function (Blueprint $table) {
             $table->increments('idmateries');
-            $table->integer('idclass');
+            $table->integer('idsubclass');
             $table->string('materi');
             $table->softDeletes();
             $table->timestamps();

@@ -16,6 +16,13 @@ class Subclass extends Model
     protected $fillable = [
         'headmateri',
     ];
+
+    public function materies()
+    {
+        return $this->hasMany('App\Models\Materies','idsubclass');
+    }
+
+   
     
     
 }

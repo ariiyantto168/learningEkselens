@@ -98,10 +98,11 @@ class ClassController extends Controller
         $saveSubclass->save();
 
         $saveMateries = new Materies;
-        $saveMateries->idclass = $saveClasses->idclass;
+        $saveMateries->idsubclass = $saveSubclass->idsubclass;
         $saveMateries->materi = $request->materi;
-        // return $saveMateries; tes tes
+        // return $saveMateries;
         $saveMateries->save();
+
 
         $count = count($request->namehilights);
         for ($i=0; $i < $count ; $i++) { 

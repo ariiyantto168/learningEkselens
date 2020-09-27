@@ -17,5 +17,7 @@ class Materies extends Model
         'materi',
     ];
 
+   
+
 
 }

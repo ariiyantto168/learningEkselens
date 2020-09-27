@@ -26,12 +26,14 @@ class Classes extends Model
     {
         return $this->hasMany('App\Models\Subclass','idclass');
     }
-    public function materies()
-    {
-        return $this->hasMany('App\Models\Materies','idclass');
-    }
+    
     public function hilights()
     {
         return $this->hasMany('App\Models\Hilights','idclass');
+    }
+
+    public function materies()
+    {
+        return $this->hasMany('App\Models\Materies','idsubclass');
     }
 }
