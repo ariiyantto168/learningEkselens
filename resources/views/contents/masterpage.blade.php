@@ -186,6 +186,32 @@
               </li>
             </ul>
           </li>
+
+          <li class="nav-item has-treeview menu-open" >
+            <a href="#" class="nav-link" id="menu_promotions">
+              <i class="nav-icon fas fa-ticket-alt"></i>
+              <p>
+                Promotion
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block;">
+              {{-- @if(check_privileges('A00003'))     --}}
+              <li class="nav-item">
+                <a href="{{ url('promotions/discounts') }}" class="nav-link" id="submenu_discounts">
+                  <i class="fas fa-tags nav-icon"></i>
+                  <p>Discounts</p>
+                </a>
+              </li>
+              {{-- @endif --}}
+              {{-- <li class="nav-item">
+                <a href="{{ url('lecture/class') }}" class="nav-link" id="submenu_class">
+                  <i class="fas fa-school nav-icon"></i>
+                  <p>Class</p>
+                </a>
+              </li> --}}
+            </ul>
+          </li>
           {{-- @endif --}}
         </ul>
       </nav>

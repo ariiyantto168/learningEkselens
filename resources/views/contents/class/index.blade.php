@@ -34,7 +34,6 @@
                           <th>Name</th>
                           <th>Categories</th>
                           <th>Images</th>
-                          <th>Demo</th>
                           <th></th>
                         </tr>
                     </thead>
@@ -52,7 +51,11 @@
                                 <img class="img-rounded zoom" src="{{env('CDN_URL')}}images/class/{{$class->images}}" width="50">
                               @endif
                         </td>
-                          <td></td>
+                          <td>
+                            {{-- <a href="{{ url('lecture/class/view'.$class->idclass) }}"><i class="fas fa-eye"></i></a> --}}
+                            <a href="{{ url('lecture/class/view/'.$class->idclass) }}"><i class="fas fa-eye"></i></a>
+                            <a href="{{ url('lecture/class/update/'.$class->idclass) }}"><i class="fas fa-edit"></i></a>
+                          </td>
                       </tr>
                       @endforeach
                   </tbody>                    

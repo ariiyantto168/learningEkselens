@@ -7,6 +7,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\DiscountsController;
 
 // ====================================================//
 
@@ -26,11 +27,17 @@ Route::get('privileges/module/create-new', [ModuleController::class, 'create_pag
 Route::post('privileges/module/create-new', [ModuleController::class, 'create_save'])->middleware('check.auth');
 
 // Categories
-Route::get('lecture/categories', [CategoriesController::class, 'index']);
-Route::get('lecture/categories/create-new', [CategoriesController::class, 'create_page']);
-Route::post('lecture/categories/create-new', [CategoriesController::class, 'create_save']);
+Route::get('lecture/categories', [CategoriesController::class, 'index'])->middleware('check.auth');
+Route::get('lecture/categories/create-new', [CategoriesController::class, 'create_page'])->middleware('check.auth');
+Route::post('lecture/categories/create-new', [CategoriesController::class, 'create_save'])->middleware('check.auth');
 
 // class
-Route::get('lecture/class', [ClassController::class, 'index'])->middleware('check.auth');
-Route::get('lecture/class/create-new', [ClassController::class, 'create_page']);
-Route::post('lecture/class/create-new', [ClassController::class, 'create_save']);
+Route::get('lecture/class', [ClassController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
+Route::get('lecture/class/create-new', [ClassController::class, 'create_page'])->middleware('check.auth');
+Route::post('lecture/class/create-new', [ClassController::class, 'create_save'])->middleware('check.auth');
+Route::get('lecture/class/update/{classes}', [ClassController::class, 'update_page'])->middleware('check.auth');
+Route::get('lecture/class/view/{classes}', [ClassController::class, 'view_page'])->middleware('check.auth');
+
+// Discounts 
+Route::get('promotions/discounts', [DiscountsController::class, 'index'])->middleware('check.auth');
+Route::get('promotions/discounts/create-new', [DiscountsController::class, 'create_page'])->middleware('check.auth');

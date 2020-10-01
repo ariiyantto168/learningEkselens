@@ -83,6 +83,7 @@ class ClassController extends Controller
         // http://cdn.local/demo/Lr72kRIl7heVERSV0lrY.mp4
         $saveClasses = new Classes;
         $saveClasses->name = $request->name;
+        $saveClasses->duration = $request->duration;
         $saveClasses->idcategories = $request->idcategories;
         $saveClasses->images = $filename;
         $saveClasses->demo = $filevideo;
@@ -91,17 +92,45 @@ class ClassController extends Controller
         // return $saveClasses;
         $saveClasses->save();
 
-        $saveSubclass = new Subclass;
-        $saveSubclass->idclass = $saveClasses->idclass;
-        $saveSubclass->headmateri = $request->headmateri;
-        // return $saveSubclass;
-        $saveSubclass->save();
+        // $saveSubclass = new Subclass;
+        // $saveSubclass->idclass = $saveClasses->idclass;
+        // $saveSubclass->headmateri = $request->headmateri;
+        // // return $saveSubclass;
+        // $saveSubclass->save();
 
-        $saveMateries = new Materies;
-        $saveMateries->idsubclass = $saveSubclass->idsubclass;
-        $saveMateries->materi = $request->materi;
-        // return $saveMateries;
-        $saveMateries->save();
+        // $saveMateries = new Materies;
+        // $saveMateries->idsubclass = $saveSubclass->idsubclass;
+        // $saveMateries->materi = $request->materi;
+        // // return $saveMateries;
+        // $saveMateries->save();
+
+        $hmateri = count($request->headmateri);
+        for ($j=0; $j < $hmateri; $j++) { 
+            $saveSubclass = new Subclass;
+            $saveSubclass->idclass = $saveClasses->idclass;
+            $saveSubclass->headmateri = $request->headmateri[$j];
+            // return $saveSubclass;
+            $saveSubclass->save();
+
+            $saveMateries = new Materies;
+            $saveMateries->idsubclass = $saveSubclass->idsubclass;
+            $saveMateries->materi = $request->materi[$j];
+            $saveMateries->save();
+          
+        }
+        // for ($j=0; $j < $hmateri; $j++) { 
+        //     $saveSubclass = new Subclass;
+        //     $saveSubclass->idclass = $saveClasses->idclass;
+        //     $saveSubclass->headmateri = $request->headmateri[$j];
+        //     // return $saveSubclass;
+        //     $saveSubclass->save();
+        
+        //     $saveMateries = new Materies;
+        //     $saveMateries->idsubclass = $saveSubclass->idsubclass;
+        //     $saveMateries->materi = $request->materi[$j];
+        //     // return $saveMateries;
+        //     $saveMateries->save();
+        // }
 
 
         $count = count($request->namehilights);
@@ -114,5 +143,28 @@ class ClassController extends Controller
 
 
         return redirect('lecture/class');
+    }
+
+    public function update_page()
+    {
+
+    }
+
+    public function view_page(Classes $classes)
+    {
+        $contents = [
+            'classes' => Classes::find($classes->idclass),
+        ];
+        $pagecontent = view('contents.class.view', $contents);
+
+    	//masterpage
+        $pagemain = array(
+            'title' => 'View Class',
+            'menu' => 'lecture',
+            'submenu' => 'class',
+            'pagecontent' => $pagecontent,
+        );
+
+        return view('contents.masterpage', $pagemain);
     }
 }

@@ -14,7 +14,7 @@ class Classes extends Model
     protected $primaryKey = 'idclass';
 
     protected $fillable = [
-        'name','images','demo','tutor','description'
+        'name','duration','images','demo','tutor','description'
     ];
 
     public function categories()
