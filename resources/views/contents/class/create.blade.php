@@ -109,7 +109,7 @@
                                   <br>
                                 </td>
                                 <td>
-                                  <label>Head Materi</label>
+                                  <label>judul Materi</label>
                                   <input type="text" style="width: 500px;" name="headmateri[]" id="headmateri_1" placeholder="Head Materi" class="form-control">
                                 </td>
                               </tr>

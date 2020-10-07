@@ -27,7 +27,7 @@
                 <h3 class="card-title">Create</h3>
             </div>
             <div class="card-body">
-                <form role="form" class="form-horizontal" method="post" action="{{ url('lecture/categories/create-new') }}">
+                <form role="form" class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url('lecture/categories/create-new') }}">
                     @csrf
                     <div class="form-group">
                       <label for="exampleInputEmail1">Name</label>
@@ -35,6 +35,14 @@
                           <input type="text" name="name" placeholder="Name" class="form-control">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Images</label>
+                      <div class="col-sm-6">
+                      <input type="file" name="images" class="form-control">
+                      <small class="text-danger">size image max 5 mb</small>
+                      </div>
+                  </div>
                         
                     <div class="card-footer">
                       <button type="submit" class="btn btn-primary">Submit</button>

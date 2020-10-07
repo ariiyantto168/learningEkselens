@@ -184,6 +184,12 @@
                   <p>Class</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ url('lecture/comments') }}" class="nav-link" id="submenu_class">
+                  <i class="fas fa-comments nav-icon"></i>
+                  <p>Comments</p>
+                </a>
+              </li>
             </ul>
           </li>
 
@@ -205,7 +211,7 @@
               </li>
               {{-- @endif --}}
               {{-- <li class="nav-item">
-                <a href="{{ url('lecture/class') }}" class="nav-link" id="submenu_class">
+                <a href="{{ url('promostions/class') }}" class="nav-link" id="submenu_class">
                   <i class="fas fa-school nav-icon"></i>
                   <p>Class</p>
                 </a>

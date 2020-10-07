@@ -8,6 +8,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DiscountsController;
+use App\Http\Controllers\CommentsController;
 
 // ====================================================//
 
@@ -37,6 +38,9 @@ Route::get('lecture/class/create-new', [ClassController::class, 'create_page'])-
 Route::post('lecture/class/create-new', [ClassController::class, 'create_save'])->middleware('check.auth');
 Route::get('lecture/class/update/{classes}', [ClassController::class, 'update_page'])->middleware('check.auth');
 Route::get('lecture/class/view/{classes}', [ClassController::class, 'view_page'])->middleware('check.auth');
+
+// comments
+Route::get('lecture/comments', [CommentsController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
 
 // Discounts 
 Route::get('promotions/discounts', [DiscountsController::class, 'index'])->middleware('check.auth');

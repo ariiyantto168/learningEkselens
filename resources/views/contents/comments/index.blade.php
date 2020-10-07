@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Categories</h1>
+            <h1 class="m-0 text-dark">Comments</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item active">Lecture</li>
-              <li class="breadcrumb-item active"><a href="{{ url('lecture/categories') }}">Categories</a></li>
+              <li class="breadcrumb-item active"><a href="{{ url('lecture/comments') }}">Comments</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -23,7 +23,7 @@
         <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Index</h3>
-                <div class="float-right"><i class="fas fa-plus size:2x"></i> <a href="{{ url('lecture/categories/create-new') }}">Create New</a></div>
+                <!-- <div class="float-right"><i class="fas fa-plus size:2x"></i> <a href="{{ url('lecture/class/create-new') }}">Create New</a></div> -->
 
             </div>
             <div class="card-body">
@@ -32,26 +32,17 @@
                         <tr>
                           <th>No</th>
                           <th>Name</th>
-                          <th>Images</th>
                           <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $idx => $categorie)
+                    @foreach ($comments as $idx => $com)
                         <tr>
                             <td>{{ $idx+1 }}</td>
-                            <td>{{ $categorie->name }}</td>
-                            <td>
-                            {{-- images dapet dr model function --}}
-                              @if (is_null($categorie->images))
-                                <label> - </label>
-                              @else
-                                <img class="img-rounded zoom" src="{{env('PATH_URL')}}class/{{$categorie->images}}" width="50">
-                              @endif
-                        </td>
+                            <td>{{ $com->namecomments }}</td>
                             <td></td>
                         </tr>
-                        @endforeach
+                    @endforeach
                   </tbody>                    
                 </table>
             </div>
