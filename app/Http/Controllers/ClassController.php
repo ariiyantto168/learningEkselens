@@ -34,6 +34,7 @@ class ClassController extends Controller
 
         return view('contents.masterpage', $pagemain);
     }
+    
     public function create_page()
     {
         $content = [

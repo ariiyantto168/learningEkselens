@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Module</h1>
+            <h1 class="m-0 text-dark">New Class</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active">Hak Akses</li>
-              <li class="breadcrumb-item acti   ve"><a href="{{ url('privileges/module') }}">Module</a></li>
+              <li class="breadcrumb-item active">Trandings</li>
+              <li class="breadcrumb-item active"><a href="{{ url('trandings/newclass') }}">New Class</a></li>
               <li class="breadcrumb-item active">Create-new</li>
 
             </ol>
@@ -22,32 +22,33 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="card">
+        <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Create</h3>
             </div>
             <div class="card-body">
-                <form role="form" method="post" action="{{ url('privileges/module/create-new') }}">
+                <form role="form" class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url('trandings/newclass/create-new') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Kode</label>
-                        <input type="text" name="code" class="form-control">
+                      <label for="exampleInputEmail1">Name</label>
+                        <div class="col-sm-5">
+                          <input type="text" name="name" placeholder="Name" class="form-control">
+                        </div>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Applikasi</label>
-                        <input type="text" name="application" class="form-control" id="exampleInputEmail1">
+                      <label>Kelas</label>
+                      <div class="col-sm-6">
+                      <select class="form-control" id="idcategories" name="class">
+                        <option>-- select Kelas -- </option>
+                          @foreach ($classes as $cls)
+                            <option value="{{$cls->idclass}}">{{$cls->name}}</option>
+                          @endforeach
+                      </select>
                     </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Modul</label>
-                        <input type="text" name="module" class="form-control" id="exampleInputEmail1">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Aksi</label>
-                        <input type="text" name="action" class="form-control" id="exampleInputEmail1">
-                    </div>
-                        
+                  </div>
+                  
+                    
                     <div class="card-footer">
                       <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

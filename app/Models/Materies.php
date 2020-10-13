@@ -18,9 +18,9 @@ class Materies extends Model
     ];
 
    
-    public function comments()
-    {
-        return $this->hasMany('App\Models\Comments','idmateries');
-    }
+    // public function comments()
+    // {
+    //     return $this->hasMany('App\Models\Comments','idmateries');
+    // }
 
 }

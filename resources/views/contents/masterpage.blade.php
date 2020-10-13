@@ -140,7 +140,7 @@
             <a href="#" class="nav-link" id="menu_privileges">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
-                Privileges
+                Hak Akses
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -156,16 +156,17 @@
               <li class="nav-item">
                 <a href="{{ url('privileges/module') }}" class="nav-link" id="submenu_module">
                   <i class="far fa-file nav-icon"></i>
-                  <p>Module</p>
+                  <p>Tambah modul aplikasi</p>
                 </a>
               </li>
             </ul>
           </li>
+          {{-- lecture --}}
           <li class="nav-item has-treeview menu-open" >
             <a href="#" class="nav-link" id="menu_lecture">
               <i class="nav-icon fas fa-building"></i>
               <p>
-                Lecture
+                Materi Kelas
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -174,30 +175,31 @@
               <li class="nav-item">
                 <a href="{{ url('lecture/categories') }}" class="nav-link" id="submenu_categories">
                   <i class="fas fa-cubes nav-icon"></i>
-                  <p>Category</p>
+                  <p>Kategori</p>
                 </a>
               </li>
               {{-- @endif --}}
               <li class="nav-item">
                 <a href="{{ url('lecture/class') }}" class="nav-link" id="submenu_class">
                   <i class="fas fa-school nav-icon"></i>
-                  <p>Class</p>
+                  <p>Kelas</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ url('lecture/comments') }}" class="nav-link" id="submenu_class">
                   <i class="fas fa-comments nav-icon"></i>
-                  <p>Comments</p>
+                  <p>Komen</p>
                 </a>
               </li>
             </ul>
           </li>
 
+          {{-- promosi --}}
           <li class="nav-item has-treeview menu-open" >
             <a href="#" class="nav-link" id="menu_promotions">
               <i class="nav-icon fas fa-ticket-alt"></i>
               <p>
-                Promotion
+                Promosi
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -206,7 +208,7 @@
               <li class="nav-item">
                 <a href="{{ url('promotions/discounts') }}" class="nav-link" id="submenu_discounts">
                   <i class="fas fa-tags nav-icon"></i>
-                  <p>Discounts</p>
+                  <p>Diskon</p>
                 </a>
               </li>
               {{-- @endif --}}
@@ -216,6 +218,39 @@
                   <p>Class</p>
                 </a>
               </li> --}}
+            </ul>
+          </li>
+
+          {{-- lecture --}}
+          <li class="nav-item has-treeview menu-open" >
+            <a href="#" class="nav-link" id="menu_trandings">
+              <i class="nav-icon fas fa-share-alt-square"></i>
+              <p>
+                Tranding
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block;">
+              {{-- @if(check_privileges('A00003'))     --}}
+              <li class="nav-item">
+                <a href="{{ url('trandings/populers') }}" class="nav-link" id="submenu_populers">
+                  <i class="fas fa-project-diagram nav-icon"></i>
+                  <p>Kelas Populer</p>
+                </a>
+              </li>
+              {{-- @endif --}}
+              <li class="nav-item">
+                <a href="{{ url('trandings/careers') }}" class="nav-link" id="submenu_careers">
+                  <i class="fas fa-school nav-icon"></i>
+                  <p>Karir Ready program</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('trandings/newclass') }}" class="nav-link" id="submenu_class">
+                  <i class="fas fa-comments nav-icon"></i>
+                  <p>Kelas Terbaru</p>
+                </a>
+              </li>
             </ul>
           </li>
           {{-- @endif --}}

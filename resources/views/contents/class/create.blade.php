@@ -81,7 +81,7 @@
                   </div>
                 
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Description</label>
+                    <label for="exampleInputEmail1">Deskripsi</label>
                     <div class="col-sm-6">
                       <textarea name="description" rows="3"  class="form-control" required></textarea>
                     </div>
@@ -90,7 +90,7 @@
                   {{-- class lecture --}}
                   <div class="card card-primary">
                     <div class="card-header">
-                      <h3 class="card-title">Materi Lecture</h3>
+                      <h3 class="card-title">Materi Kelas</h3>
                       <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                         <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
@@ -123,9 +123,6 @@
                               <table>
                                 <tbody>
                                   <tr>
-                                    <td width="10%" >
-                                      <label>1</label>
-                                    </td>
                                     <td>
                                       <label>Materi</label>
                                       <input type="text" style="width: 500px;" name="materi[]" id="materi_1" placeholder="Materi" class="form-control">
@@ -161,7 +158,7 @@
                   {{-- hilight lecture --}}
                   <div class="card card-primary">
                     <div class="card-header">
-                      <h3 class="card-title">Hilight Lecture</h3>
+                      <h3 class="card-title">Hover Kelar</h3>
                       <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
                         <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
@@ -179,7 +176,7 @@
                               <label>1</label>
                             </td>
                             <td style="text-align=center">
-                              <label for="exampleInputEmail1">Hilights Class</label>
+                              <label for="exampleInputEmail1">Hover Kelas</label>
                               <textarea name="namehilights[]" style="width: 500px;" id="namehilights_1"  class="form-control" required></textarea>
                             </td>
                           </tr>

@@ -9,6 +9,9 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DiscountsController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\PopulersController;
+use App\Http\Controllers\CareersControlller;
+use App\Http\Controllers\NewclasesController;
 
 // ====================================================//
 
@@ -41,6 +44,22 @@ Route::get('lecture/class/view/{classes}', [ClassController::class, 'view_page']
 
 // comments
 Route::get('lecture/comments', [CommentsController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
+
+// populers
+Route::get('trandings/populers', [PopulersController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
+Route::get('trandings/populers/create-new', [PopulersController::class, 'create_page'])->middleware('check.auth');
+Route::post('trandings/populers/create-new', [PopulersController::class, 'create_save'])->middleware('check.auth');
+
+// careers ready program
+Route::get('trandings/careers', [CareersControlller::class, 'index'])->middleware('check.auth')->middleware('check.auth');
+Route::get('trandings/careers/create-new', [CareersControlller::class, 'create_page'])->middleware('check.auth');
+Route::post('trandings/careers/create-new', [CareersControlller::class, 'create_save'])->middleware('check.auth');
+
+// careers ready program
+Route::get('trandings/newclass', [NewclasesController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
+Route::get('trandings/newclass/create-new', [NewclasesController::class, 'create_page'])->middleware('check.auth');
+Route::post('trandings/newclass/create-new', [NewclasesController::class, 'create_save'])->middleware('check.auth');
+
 
 // Discounts 
 Route::get('promotions/discounts', [DiscountsController::class, 'index'])->middleware('check.auth');

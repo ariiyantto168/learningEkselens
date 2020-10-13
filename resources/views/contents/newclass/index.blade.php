@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Module</h1>
+            <h1 class="m-0 text-dark">New Class</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active">Hak Akses</li>
-              <li class="breadcrumb-item active"><a href="{{ url('privileges/module') }}">Module</a></li>
+              <li class="breadcrumb-item active">Trandings</li>
+              <li class="breadcrumb-item active"><a href="{{ url('trandings/newclass') }}">New Class</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -20,10 +20,10 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="card">
+        <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Index</h3>
-                <div class="float-right"><i class="fas fa-plus size:2x"></i> <a href="{{ url('privileges/module/create-new') }}">Create New</a></div>
+                <div class="float-right"><i class="fas fa-plus size:2x"></i> <a href="{{ url('trandings/newclass/create-new') }}">Create New</a></div>
 
             </div>
             <div class="card-body">
@@ -31,21 +31,15 @@
                     <thead>
                         <tr>
                           <th>No</th>
-                          <th>Kode</th>
-                          <th>Aplikasi</th>
-                          <th>Module</th>
-                          <th>Aksi</th>
+                          <th>Name</th>
                           <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                      @foreach ($modules as $idx => $module)
+                      @foreach ($newclases as $idx => $cls)
                       <tr>
                           <td>{{ $idx+1 }}</td>
-                          <td>{{ $module->code }}</td>
-                          <td>{{ $module->application }}</td>
-                          <td>{{ $module->module }}</td>
-                          <td>{{ $module->action }}</td>
+                          <td>{{ $cls->name }}</td>
                           <td></td>
                       </tr>
                       @endforeach

@@ -16,7 +16,9 @@ class CreateMateriesTable extends Migration
         Schema::create('materies', function (Blueprint $table) {
             $table->increments('idmateries');
             $table->integer('idsubclass');
-            $table->string('materi');
+            $table->string('name_materi');
+            $table->string('video480');
+            $table->string('video720');
             $table->softDeletes();
             $table->timestamps();
         });
