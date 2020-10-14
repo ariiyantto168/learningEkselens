@@ -21,6 +21,9 @@ class CreateMateriesTable extends Migration
             $table->string('video720');
             $table->softDeletes();
             $table->timestamps();
+            $table->string('created_by');
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
         });
     }
 

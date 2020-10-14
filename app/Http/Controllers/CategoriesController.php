@@ -60,12 +60,13 @@ class CategoriesController extends Controller
         if($request->has('images')){
             $images = $request->file('images');
             $filename = Str::random(20).'.'.$images->getClientOriginalExtension();
-            $cdnpath =  env('CDN_URL').'class/';
+            $cdnpath =  env('CDN_URL').'image/';
             $images->move($cdnpath,$filename);
         }
 
         $saveCategories = new Categories;
         $saveCategories->name = $request->name;
+        $saveCategories->slug =  $slug = Str::slug($request->name, '-');
         $saveCategories->images = $filename;
         $saveCategories->save();
         return redirect('lecture/categories');

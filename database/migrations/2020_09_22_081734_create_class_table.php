@@ -17,13 +17,16 @@ class CreateClassTable extends Migration
             $table->increments('idclass');
             $table->integer('idcategories');
             $table->string('name');
-            $table->string('duration');
+            $table->string('duration')->nullable();
             $table->string('images')->nullable();
             $table->string('demo')->nullable();
             $table->text('tutor')->nullable();
             $table->text('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
+            $table->string('created_by');
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
         });
     }
 

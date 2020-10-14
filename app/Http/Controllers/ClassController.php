@@ -17,7 +17,7 @@ class ClassController extends Controller
     public function index()
     {
         $contents = [
-            'classes' => Classes::with('categories','subclass','materies','hilights')->get(),
+            'classes' => Classes::all(),
         ];
 
         // return $contents;
@@ -37,10 +37,10 @@ class ClassController extends Controller
     
     public function create_page()
     {
-        $content = [
+        $contents = [
             'categories' => Categories::all(),
         ];
-        $pagecontent = view('contents.class.create', $content);
+        $pagecontent = view('contents.class.create', $contents);
 
     	//masterpage
         $pagemain = array(
@@ -53,114 +53,64 @@ class ClassController extends Controller
         return view('contents.masterpage', $pagemain);
     }
 
-    public function create_save(Classes $classes, Request $request)
+    public function create_save(Request $request)
     {
         // return $request->all();
-        // return $request->file('images');
-
         $request->validate([
             'name' => 'required',
-            'images' => 'required | max:200000',
-            // 'demo' => 'required',
+            'tutor' => 'required',
+            'description' => 'required',
+            'images' => 'required',
+            'demo' => 'required',
+            // 'images' => 'required|file|mimes:jpg,jpeg,png|max:50000',
+            // 'demo' => 'required|file|mimes:mp4|max:100000',
         ]);
 
-        
-
-        $filename = NULL;
-        if($request->has('images')){
-            $images = $request->file('images');
-            $filename = Str::random(20).'.'.$images->getClientOriginalExtension();
-            $cdnpath =  env('CDN_PATH').'images/class/';
-            $images->move($cdnpath,$filename);
+        if($request->hasFile('images')){
+            $file = $request->file('images');
+            $filename = time()."_".$file->getClientOriginalName();
+            $destinasi = env('CDN_URL').'image/'; 
+            $file->move($destinasi, $filename);
         }
 
-        $filevideo = NULL;
-        if($request->has('demo')){
-            $video = $request->file('demo');
-            $filevideo = Str::random(20).'.'.$video->getClientOriginalExtension();
-            $cdnvideo =  env('CDN_PATH').'demo/';
-            $video->move($cdnvideo,$filevideo);
-        }
-        // http://cdn.local/demo/Lr72kRIl7heVERSV0lrY.mp4
-        $saveClasses = new Classes;
-        $saveClasses->name = $request->name;
-        $saveClasses->duration = $request->duration;
-        $saveClasses->idcategories = $request->idcategories;
-        $saveClasses->images = $filename;
-        $saveClasses->demo = $filevideo;
-        $saveClasses->tutor = $request->tutor;
-        $saveClasses->description = $request->description;
-        // return $saveClasses;
-        $saveClasses->save();
-
-        // $saveSubclass = new Subclass;
-        // $saveSubclass->idclass = $saveClasses->idclass;
-        // $saveSubclass->headmateri = $request->headmateri;
-        // // return $saveSubclass;
-        // $saveSubclass->save();
-
-        // $saveMateries = new Materies;
-        // $saveMateries->idsubclass = $saveSubclass->idsubclass;
-        // $saveMateries->materi = $request->materi;
-        // // return $saveMateries;
-        // $saveMateries->save();
-
-        $hmateri = count($request->headmateri);
-        for ($j=0; $j < $hmateri; $j++) { 
-            $saveSubclass = new Subclass;
-            $saveSubclass->idclass = $saveClasses->idclass;
-            $saveSubclass->headmateri = $request->headmateri[$j];
-            // return $saveSubclass;
-            $saveSubclass->save();
-
-            $saveMateries = new Materies;
-            $saveMateries->idsubclass = $saveSubclass->idsubclass;
-            $saveMateries->materi = $request->materi[$j];
-            $saveMateries->save();
-          
-        }
-        // for ($j=0; $j < $hmateri; $j++) { 
-        //     $saveSubclass = new Subclass;
-        //     $saveSubclass->idclass = $saveClasses->idclass;
-        //     $saveSubclass->headmateri = $request->headmateri[$j];
-        //     // return $saveSubclass;
-        //     $saveSubclass->save();
-        
-        //     $saveMateries = new Materies;
-        //     $saveMateries->idsubclass = $saveSubclass->idsubclass;
-        //     $saveMateries->materi = $request->materi[$j];
-        //     // return $saveMateries;
-        //     $saveMateries->save();
-        // }
-
-
-        $count = count($request->namehilights);
-        for ($i=0; $i < $count ; $i++) { 
-            $saveHilights = new Hilights;
-            $saveHilights->idclass = $saveClasses->idclass;
-            $saveHilights->namehilights = $request->namehilights[$i];
-            $saveHilights->save();
+        if($request->hasFile('demo')){
+            $demo = $request->file('demo');
+            $demo_file = time()."_".$demo->getClientOriginalName();
+            $destinasi = env('CDN_URL').'demo/'; 
+            $demo->move($destinasi, $demo_file);
         }
 
+        $save_class = new Classes;
+        $save_class->name = $request->name;
+        $save_class->idcategories = $request->idcategories;
+        $save_class->name = $request->tutor;
+        $save_class->description = $request->description;
+        $save_class->images = $filename;
+        $save_class->demo = $demo_file;
+        $save_class->save();
+        // return $save_class;
 
-        return redirect('lecture/class');
+        return redirect('lecture/class/detail/'.$save_class->idclass);
     }
 
-    public function update_page()
+    public function class_detail(Classes $class)
     {
 
-    }
-
-    public function view_page(Classes $classes)
-    {
+        $classes = Classes::with([
+                        'subclass',
+                        ])
+                        ->where('idclass',$class->idclass)
+                        ->first();
         $contents = [
-            'classes' => Classes::find($classes->idclass),
+            'classes' => $classes,
+            'class' => $class
         ];
-        $pagecontent = view('contents.class.view', $contents);
+        
+        $pagecontent = view('contents.class.detail', $contents);
 
     	//masterpage
         $pagemain = array(
-            'title' => 'View Class',
+            'title' => 'Class',
             'menu' => 'lecture',
             'submenu' => 'class',
             'pagecontent' => $pagecontent,
@@ -168,4 +118,82 @@ class ClassController extends Controller
 
         return view('contents.masterpage', $pagemain);
     }
+
+    public function addsubclass(Classes $class, Request $request)
+    {
+        $heads = $request->headmateri;
+        // for ($i=0; $i < count($heads); $i++) { 
+        //     if ($heads[$i] == NULL || $heads[$i] == 0) {
+        //         return redirect()->back()->with('status_error', 'Add Sub Class Not Empty');
+        //     }
+        // }
+
+        for ($i=0; $i < count($heads); $i++) { 
+            $save_subclass = new Subclass;
+            $save_subclass->idclass = $class->idclass;
+            $save_subclass->headmateri = $heads[$i];
+            $save_subclass->save();
+        }
+
+        return redirect('lecture/class/detail/'.$class->idclass);
+        // return redirect('lecture/class/detail/'.$save_class->idclass);
+    }
+
+    public function addmateries(Classes $class, Request $request)
+    {
+        // keterangan validate required not null
+        // if (empty($request->name_materies)) {
+        //     return redirect()->back()->with('status_error', 'name materies is required ');
+        // }
+        // keterangan validate extension 
+        // for ($i=0; $i < count($request->video_480); $i++) {
+        //     if($request->video_480[$i]->getClientOriginalExtension() != 'mp4'){
+        //         return redirect()->back()->with('status_error', 'Video 480 Extension must MP4');
+        //     }
+        //     if($request->video_720[$i]->getClientOriginalExtension() != 'mp4'){
+        //         return redirect()->back()->with('status_error', 'Video 720 Extension must MP4');
+        //     }
+        //     if (empty($request->video_480[$i]) || empty($request->video_720[$i])   ) {
+        //         return redirect()->back()->with('status_error', 'Video 480 and 720 is required');
+        //     }
+        // }
+
+        for ($i=0; $i < count($request->name_materies) ; $i++) { 
+
+            $name_480 = Str::random(20)."_".$request->file('video_480')[$i]->getClientOriginalName();
+            $path_480 = env('CDN_URL').'video480/'; 
+            $request->file('video_480')[$i]->move($path_480, $name_480);
+
+            $name_720 = Str::random(20)."_".$request->file('video_720')[$i]->getClientOriginalName();
+            $path_720 = env('CDN_URL').'video720/'; 
+            $request->file('video_720')[$i]->move($path_720, $name_720);
+
+            $save_materies = new Materies;
+            $save_materies->idsubclass = $request->add_idsubclass;
+            $save_materies->name_materi = $request->name_materies[$i];
+            $save_materies->video480 = $name_480;
+            $save_materies->video720 = $name_720;
+            $save_materies->save();
+
+        }
+
+        return redirect('lecture/class/detail/'.$class->idclass)->with('status_success','Successfuly Add Materies');
+    }
+
+    public function viewmateries(Classes $class,SubClass $subcls)
+    {   
+        $subclass = Subclass::with([
+                        'class_belong',
+                        'materies'
+                    ])
+                    ->where('idsubclass',$subcls->idsubclass)
+                    ->first();
+
+
+
+        return response()->json(array('subclass'=> $subclass), 200);
+
+    }
+   
+
 }

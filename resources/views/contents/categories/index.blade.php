@@ -46,7 +46,7 @@
                               @if (is_null($categorie->images))
                                 <label> - </label>
                               @else
-                                <img class="img-rounded zoom" src="{{env('PATH_URL')}}class/{{$categorie->images}}" width="50">
+                                <img class="img-rounded zoom" src="{{env('PATH_URL')}}image/{{$categorie->images}}" width="50">
                               @endif
                         </td>
                             <td></td>

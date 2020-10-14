@@ -39,8 +39,18 @@ Route::post('lecture/categories/create-new', [CategoriesController::class, 'crea
 Route::get('lecture/class', [ClassController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
 Route::get('lecture/class/create-new', [ClassController::class, 'create_page'])->middleware('check.auth');
 Route::post('lecture/class/create-new', [ClassController::class, 'create_save'])->middleware('check.auth');
-Route::get('lecture/class/update/{classes}', [ClassController::class, 'update_page'])->middleware('check.auth');
-Route::get('lecture/class/view/{classes}', [ClassController::class, 'view_page'])->middleware('check.auth');
+Route::get('lecture/class/detail/{class}', [ClassController::class, 'class_detail'])->middleware('check.auth');
+// subclass
+Route::post('lecture/class/detail/{class}/create-subclass', [ClassController::class, 'addsubclass'])->middleware('check.auth');
+// materies
+Route::post('lecture/class/detail/{class}/create-materies', [ClassController::class, 'addmateries'])->middleware('check.auth');
+Route::get('lecture/class/detail/{class}/view-materies/{subcls}', [ClassController::class, 'viewmateries'])->middleware('check.auth');
+
+
+// Route::get('lecture/class/update/{classes}', [ClassController::class, 'update_page'])->middleware('check.auth');
+// Route::get('lecture/class/view/{classes}', [ClassController::class, 'view_page'])->middleware('check.auth');
+
+
 
 // comments
 Route::get('lecture/comments', [CommentsController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
