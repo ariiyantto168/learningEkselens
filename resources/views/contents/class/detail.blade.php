@@ -46,7 +46,7 @@
                                 </tr>
                                 <tr>
                                     <td width="20%"><strong>Duration</strong></td>
-                                    <td></td> 
+                                    <td>{{ $class->duration }}</td> 
                                 </tr>
                                 <tr>
                                     <td width="20%"><strong> Tutor</strong></td>

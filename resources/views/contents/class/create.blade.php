@@ -36,7 +36,7 @@
           @csrf
           <div class="row">
               <div class="col-12">
-                  <div class="card">
+                  <div class="card card-primary">
                       <div class="card-header">
                           <h3 class="card-title">
                             Create
@@ -55,9 +55,39 @@
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="name_materi" class="col-sm-2 col-form-label">Name</label>
+                          <label for="name_materi" class="col-sm-2 col-form-label">Nama Kelas</label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" name="name" placeholder="Name">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="name_materi" class="col-sm-2 col-form-label">Harga</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="price" placeholder="Harga Kelas">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="name_materi" class="col-sm-2 col-form-label">Durasi Kelas</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="duration" placeholder="Durasi Kelas">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="name_materi" class="col-sm-2 col-form-label">Instructor</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="instructor" placeholder="Name Instructor">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="name_materi" class="col-sm-2 col-form-label">Role Instructor</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="roleinstructor" placeholder="Role Instructor">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="name_materi" class="col-sm-2 col-form-label">Rating</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="rating" placeholder="Rating">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -73,7 +103,14 @@
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="name_materi" class="col-sm-2 col-form-label">Images</label>
+                          <label for="name_materi" class="col-sm-2 col-form-label">Images Instructor</label>
+                          <div class="col-sm-10">
+                            <input type="file" class="form-control-file" name="imagesinstructor">
+                            <small class="help-block">Extension must jpg, jpeg, png</small>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="name_materi" class="col-sm-2 col-form-label">Images Kelas</label>
                           <div class="col-sm-10">
                             <input type="file" class="form-control-file" name="images">
                             <small class="help-block">Extension must jpg, jpeg, png</small>

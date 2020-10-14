@@ -17,7 +17,12 @@ class CreateClassTable extends Migration
             $table->increments('idclass');
             $table->integer('idcategories');
             $table->string('name');
-            $table->string('duration')->nullable();
+            $table->string('instructor');
+            $table->string('imagesinstructor');
+            $table->string('roleinstructor');
+            $table->string('price');
+            $table->string('rating');
+            $table->string('duration');
             $table->string('images')->nullable();
             $table->string('demo')->nullable();
             $table->text('tutor')->nullable();

@@ -59,7 +59,9 @@ class ClassController extends Controller
         $request->validate([
             'name' => 'required',
             'tutor' => 'required',
+            'instructor' => 'required',
             'description' => 'required',
+            'imagesinstructor' => 'required',
             'images' => 'required',
             'demo' => 'required',
             // 'images' => 'required|file|mimes:jpg,jpeg,png|max:50000',
@@ -73,6 +75,13 @@ class ClassController extends Controller
             $file->move($destinasi, $filename);
         }
 
+        if($request->hasFile('imagesinstructor')){
+            $fileinstructor = $request->file('imagesinstructor');
+            $nameinstructor = time()."_".$fileinstructor->getClientOriginalName();
+            $destinasi = env('CDN_URL').'instructor/'; 
+            $fileinstructor->move($destinasi, $nameinstructor);
+        }
+
         if($request->hasFile('demo')){
             $demo = $request->file('demo');
             $demo_file = time()."_".$demo->getClientOriginalName();
@@ -83,9 +92,16 @@ class ClassController extends Controller
         $save_class = new Classes;
         $save_class->name = $request->name;
         $save_class->idcategories = $request->idcategories;
-        $save_class->name = $request->tutor;
+        $save_class->tutor = $request->tutor;
+        $save_class->instructor = $request->instructor;
+        $save_class->roleinstructor = $request->roleinstructor;
+        $save_class->price = $request->price;
+        $save_class->rating = $request->rating;
+        $save_class->duration = $request->duration;
         $save_class->description = $request->description;
         $save_class->images = $filename;
+        $save_class->imagesinstructor = $nameinstructor;
+        $save_class->imagesinstructor = $demo_file;
         $save_class->demo = $demo_file;
         $save_class->save();
         // return $save_class;
