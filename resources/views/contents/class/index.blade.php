@@ -32,7 +32,7 @@
                         <tr>
                           <th>No</th>
                           <th>Name</th>
-                          {{-- <th>Categories</th> --}}
+                          <th>Categories</th>
                           <th>Images</th>
                           <th></th>
                         </tr>
@@ -42,18 +42,17 @@
                       <tr>
                           <td>{{ $idx+1 }}</td>
                           <td>{{ $class->name }}</td>
-                          {{-- <td>{{$class->categories->name}}</td> --}}
+                          <td>{{$class->categories->name}}</td>
                           <td>
                             {{-- images dapet dr model function --}}
                               @if (is_null($class->images))
                                 <label> - </label>
                               @else
-                                <img class="img-rounded zoom" src="{{env('CDN_URL')}}images/class/{{$class->images}}" width="50">
+                                <img class="img-rounded zoom" src="{{env('PATH_URL')}}image/{{$class->images}}" width="50">
                               @endif
                         </td>
                           <td>
-                            {{-- <a href="{{ url('lecture/class/view'.$class->idclass) }}"><i class="fas fa-eye"></i></a> --}}
-                            <a href="{{ url('lecture/class/view/'.$class->idclass) }}"><i class="fas fa-eye"></i></a>
+                            <a href="{{ url('lecture/class/detail/'.$class->idclass) }}"><i class="fas fa-eye"></i></a>
                             <a href="{{ url('lecture/class/update/'.$class->idclass) }}"><i class="fas fa-edit"></i></a>
                           </td>
                       </tr>

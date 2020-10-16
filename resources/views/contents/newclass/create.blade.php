@@ -38,14 +38,53 @@
                     
                     <div class="form-group">
                       <label>Kelas</label>
-                      <div class="col-sm-6">
-                      <select class="form-control" id="idcategories" name="class">
+                      <div class="col-sm-5">
+                      <select class="form-control" id="idclass" name="idclass" onchange="passing_value(this.value)">
                         <option>-- select Kelas -- </option>
+                        @php
+                          $duration = [];
+                          $tutor = [];
+                          $price = [];
+                          $rating = []; 
+                          $image = []; 
+                        @endphp
                           @foreach ($classes as $cls)
+                            @php
+                              $duration[$cls->idclass] = $cls->duration;
+                              $tutor[$cls->idclass] = $cls->tutor;
+                              $price[$cls->idclass] = $cls->price;
+                              $rating[$cls->idclass] = $cls->rating;       
+                            @endphp
                             <option value="{{$cls->idclass}}">{{$cls->name}}</option>
                           @endforeach
                       </select>
                     </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Duration</label>
+                      <div class="col-sm-5">
+                        <input type="text" name="duration" onchange="passing_value(this.value)" id="duration" placeholder="Duration" class="form-control">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Tutor</label>
+                      <div class="col-sm-5">
+                        <input type="text" name="tutor" onchange="passing_value(this.value)" id="tutor" placeholder="Tutor" class="form-control">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Price</label>
+                      <div class="col-sm-5">
+                        <input type="text" name="price" onchange="passing_value(this.value)" id="price" placeholder="Price" class="form-control">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Rating</label>
+                      <div class="col-sm-5">
+                        <input type="text" name="name" onchange="passing_value(this.value)" id="rating" placeholder="Rating" class="form-control">
+                      </div>
                   </div>
                   
                     
@@ -59,3 +98,19 @@
       </div>
     </section>
   </div>
+
+  <script>
+        var dur = {!!json_encode($duration)!!};
+        var tut = {!!json_encode($tutor)!!};
+        var cls = {!!json_encode($price)!!};
+        var rat = {!!json_encode($rating)!!};
+        console.log(cls)
+        function passing_value(id){
+          $('#duration').val(dur[id])
+          $('#tutor').val(tut[id])
+          $('#price').val(cls[id])
+          $('#rating').val(rat[id])
+          $('#image').val(img[id])
+          // console.log(cls[id]);
+        }
+    </script>

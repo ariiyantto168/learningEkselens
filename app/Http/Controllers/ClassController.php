@@ -114,6 +114,7 @@ class ClassController extends Controller
 
         $classes = Classes::with([
                         'subclass',
+                        'hilights'
                         ])
                         ->where('idclass',$class->idclass)
                         ->first();
@@ -138,11 +139,11 @@ class ClassController extends Controller
     public function addsubclass(Classes $class, Request $request)
     {
         $heads = $request->headmateri;
-        // for ($i=0; $i < count($heads); $i++) { 
-        //     if ($heads[$i] == NULL || $heads[$i] == 0) {
-        //         return redirect()->back()->with('status_error', 'Add Sub Class Not Empty');
-        //     }
-        // }
+        for ($i=0; $i < count($heads); $i++) { 
+            if (empty($heads[$i])) {
+                return redirect()->back()->with('status_error', 'Add Sub Class Not Empty');
+            }
+        }
 
         for ($i=0; $i < count($heads); $i++) { 
             $save_subclass = new Subclass;
@@ -152,27 +153,45 @@ class ClassController extends Controller
         }
 
         return redirect('lecture/class/detail/'.$class->idclass);
-        // return redirect('lecture/class/detail/'.$save_class->idclass);
+    }
+
+    public function addhilights(Classes $class, Request $request)
+    {
+        $heads = $request->namehilights;
+        for ($i=0; $i < count($heads); $i++) { 
+            if (empty($heads[$i])) {
+                return redirect()->back()->with('status_error', 'Add Hilights Not Empty');
+            }
+        }
+
+        for ($i=0; $i < count($heads); $i++) { 
+            $saveHilights = new Hilights;
+            $saveHilights->idclass = $class->idclass;
+            $saveHilights->namehilights = $heads[$i];
+            $saveHilights->save();
+        }
+
+        return redirect('lecture/class/detail/'.$class->idclass);
     }
 
     public function addmateries(Classes $class, Request $request)
     {
         // keterangan validate required not null
-        // if (empty($request->name_materies)) {
-        //     return redirect()->back()->with('status_error', 'name materies is required ');
-        // }
-        // keterangan validate extension 
-        // for ($i=0; $i < count($request->video_480); $i++) {
-        //     if($request->video_480[$i]->getClientOriginalExtension() != 'mp4'){
-        //         return redirect()->back()->with('status_error', 'Video 480 Extension must MP4');
-        //     }
-        //     if($request->video_720[$i]->getClientOriginalExtension() != 'mp4'){
-        //         return redirect()->back()->with('status_error', 'Video 720 Extension must MP4');
-        //     }
-        //     if (empty($request->video_480[$i]) || empty($request->video_720[$i])   ) {
-        //         return redirect()->back()->with('status_error', 'Video 480 and 720 is required');
-        //     }
-        // }
+        if (empty($request->name_materies)) {
+            return redirect()->back()->with('status_error', 'name materies is required ');
+        }
+        // validate extension 
+        for ($i=0; $i < count($request->video_480); $i++) {
+            if($request->video_480[$i]->getClientOriginalExtension() != 'mp4'){
+                return redirect()->back()->with('status_error', 'Video 480 Extension must MP4');
+            }
+            if($request->video_720[$i]->getClientOriginalExtension() != 'mp4'){
+                return redirect()->back()->with('status_error', 'Video 720 Extension must MP4');
+            }
+            if (empty($request->video_480[$i]) || empty($request->video_720[$i])   ) {
+                return redirect()->back()->with('status_error', 'Video 480 and 720 is required');
+            }
+        }
 
         for ($i=0; $i < count($request->name_materies) ; $i++) { 
 
@@ -205,11 +224,15 @@ class ClassController extends Controller
                     ->where('idsubclass',$subcls->idsubclass)
                     ->first();
 
-
-
         return response()->json(array('subclass'=> $subclass), 200);
 
     }
    
+    public function delete_materies(Classes $class,Materies $materies)
+    {
+        $materies = Materies::find($materies->idmateries);
+        $materies->delete();
+        return response()->json(array('materies'=> $materies), 200);
 
+    }
 }

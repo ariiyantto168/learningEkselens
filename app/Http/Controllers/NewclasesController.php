@@ -63,6 +63,7 @@ class NewclasesController extends Controller
 
         $saveNclass = new Newclases;
         $saveNclass->name = $request->name;
+        $saveNclass->idclass = $request->idclass;
         $saveNclass->save();
         return redirect('trandings/newclass');
     }
