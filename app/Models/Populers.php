@@ -15,4 +15,9 @@ class Populers extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function classes()
+    {
+        return $this->belongsTo('App\Models\Classes', 'idclass');
+    }
 }

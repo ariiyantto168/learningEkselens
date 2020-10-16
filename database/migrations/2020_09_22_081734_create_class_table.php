@@ -22,7 +22,7 @@ class CreateClassTable extends Migration
             $table->string('imagesinstructor');
             $table->string('roleinstructor');
             $table->string('price');
-            $table->string('rating');
+            $table->integer('rating');
             $table->string('duration');
             $table->string('images')->nullable();
             $table->string('demo')->nullable();

@@ -15,6 +15,7 @@ class CreatePopulersTable extends Migration
     {
         Schema::create('populers', function (Blueprint $table) {
             $table->increments('idpopulers');
+            $table->integer('idclass');
             $table->string('name');
             $table->timestamps();
         });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Careers;
+use App\Models\Classes;
 use Image;
 use File;
 
@@ -13,7 +14,7 @@ class CareersControlller extends Controller
     public function index()
     {
         $contents = [
-            'careers' => Careers::all(),
+            'careers' => Careers::with('classes')->get(),
         ];
 
         // return $contents;
@@ -33,9 +34,12 @@ class CareersControlller extends Controller
 
     public function create_page()
     {
+        $clas = Classes::all();
+
         $contents = [
-            
+            'classes' => $clas,
         ];
+        
         $pagecontent = view('contents.careers.create', $contents);
 
     	//masterpage
@@ -60,6 +64,7 @@ class CareersControlller extends Controller
 
         $saveCareers = new Careers;
         $saveCareers->name = $request->name;
+        $saveCareers->idclass = $request->idclass;
         $saveCareers->save();
         return redirect('trandings/careers');
     }

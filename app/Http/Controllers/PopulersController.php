@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Populers;
+use App\Models\Classes;
 use Image;
 use File;
+
+
 
 
 class PopulersController extends Controller
@@ -14,7 +17,7 @@ class PopulersController extends Controller
     public function index()
     {
         $contents = [
-            'populers' => Populers::all(),
+            'populers' => Populers::with('classes')->get(),
         ];
 
         // return $contents;
@@ -34,9 +37,12 @@ class PopulersController extends Controller
 
     public function create_page()
     {
+        $clas = Classes::all();
+
         $contents = [
-            
+            'classes' => $clas,
         ];
+
         $pagecontent = view('contents.populers.create', $contents);
 
     	//masterpage
@@ -61,6 +67,7 @@ class PopulersController extends Controller
 
         $savePopulers = new Populers;
         $savePopulers->name = $request->name;
+        $savePopulers->idclass = $request->idclass;
         $savePopulers->save();
         return redirect('trandings/populers');
     }

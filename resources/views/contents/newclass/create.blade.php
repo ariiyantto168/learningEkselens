@@ -42,6 +42,8 @@
                       <select class="form-control" id="idclass" name="idclass" onchange="passing_value(this.value)">
                         <option>-- select Kelas -- </option>
                         @php
+                          $instructor = [];
+                          $roleins = [];
                           $duration = [];
                           $tutor = [];
                           $price = [];
@@ -50,6 +52,8 @@
                         @endphp
                           @foreach ($classes as $cls)
                             @php
+                              $instructor[$cls->idclass] = $cls->instructor;
+                              $roleins[$cls->idclass] = $cls->roleinstructor;
                               $duration[$cls->idclass] = $cls->duration;
                               $tutor[$cls->idclass] = $cls->tutor;
                               $price[$cls->idclass] = $cls->price;
@@ -62,7 +66,19 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Duration</label>
+                    <label for="exampleInputEmail1">Nama Instructor</label>
+                      <div class="col-sm-5">
+                        <input type="text" name="instructor" onchange="passing_value(this.value)" id="instructor" placeholder="Instructor" class="form-control">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Role Instructor</label>
+                      <div class="col-sm-5">
+                        <input type="text" name="roleinstructor" onchange="passing_value(this.value)" id="roleinstructor" placeholder="Role Instructor" class="form-control">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Durasi</label>
                       <div class="col-sm-5">
                         <input type="text" name="duration" onchange="passing_value(this.value)" id="duration" placeholder="Duration" class="form-control">
                       </div>
@@ -83,7 +99,7 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">Rating</label>
                       <div class="col-sm-5">
-                        <input type="text" name="name" onchange="passing_value(this.value)" id="rating" placeholder="Rating" class="form-control">
+                        <input type="text" name="rating" onchange="passing_value(this.value)" id="rating" placeholder="Rating" class="form-control">
                       </div>
                   </div>
                   
@@ -100,12 +116,16 @@
   </div>
 
   <script>
+        var ins = {!!json_encode($instructor)!!};
+        var roleins = {!!json_encode($roleins)!!};
         var dur = {!!json_encode($duration)!!};
         var tut = {!!json_encode($tutor)!!};
         var cls = {!!json_encode($price)!!};
         var rat = {!!json_encode($rating)!!};
         console.log(cls)
         function passing_value(id){
+          $('#instructor').val(roleins[id])
+          $('#roleinstructor').val(ins[id])
           $('#duration').val(dur[id])
           $('#tutor').val(tut[id])
           $('#price').val(cls[id])
