@@ -17,6 +17,7 @@ class CreateMateriesTable extends Migration
             $table->increments('idmateries');
             $table->integer('idsubclass');
             $table->string('name_materi');
+            $table->string('slug');
             $table->string('video480');
             $table->string('video720');
             $table->softDeletes();

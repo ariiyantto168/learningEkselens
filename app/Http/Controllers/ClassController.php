@@ -91,6 +91,7 @@ class ClassController extends Controller
 
         $save_class = new Classes;
         $save_class->name = $request->name;
+        $save_class->slug =  $slug = Str::slug($request->name, '-');
         $save_class->idcategories = $request->idcategories;
         $save_class->tutor = $request->tutor;
         $save_class->instructor = $request->instructor;
@@ -206,6 +207,7 @@ class ClassController extends Controller
             $save_materies = new Materies;
             $save_materies->idsubclass = $request->add_idsubclass;
             $save_materies->name_materi = $request->name_materies[$i];
+            $save_materies->slug =  $slug = Str::slug($request->name_materies[$i], '-');
             $save_materies->video480 = $name_480;
             $save_materies->video720 = $name_720;
             $save_materies->save();

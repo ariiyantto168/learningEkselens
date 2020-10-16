@@ -17,6 +17,7 @@ class CreateClassTable extends Migration
             $table->increments('idclass');
             $table->integer('idcategories');
             $table->string('name');
+            $table->string('slug');
             $table->string('instructor');
             $table->string('imagesinstructor');
             $table->string('roleinstructor');
