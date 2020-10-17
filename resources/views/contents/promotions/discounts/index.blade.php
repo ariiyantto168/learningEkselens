@@ -32,13 +32,30 @@
                         <tr>
                           <th>No</th>
                           <th>Name</th>
-                          <th>Percent</th>
-                          <th>Slug</th>
+                          <th>Discounts Price</th>
+                          <th>Images</th>
                           <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                       
+                      @foreach ($discounts as $idx => $dis)
+                      <tr>
+                          <td>{{ $idx+1 }}</td>
+                          <td>{{ $dis->name }}</td>
+                          <td>{{ $dis->potongan }}</td>
+                          <td>
+                          {{-- images dapet dr model function --}}
+                            @if (is_null($dis->images))
+                              <label> - </label>
+                            @else
+                              <img class="img-rounded zoom" src="{{env('PATH_URL')}}discounts/{{$dis->images}}" width="50">
+                            @endif
+                      </td>
+                      <td>
+                        <a href="{{ url('promotions/discounts/update/'.$dis->iddiscounts) }}"><i class="fas fa-edit" title="Update Discounts"></i></a>
+                      </td>
+                      </tr>
+                      @endforeach
                   </tbody>                    
                 </table>
             </div>

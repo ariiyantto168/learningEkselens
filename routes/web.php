@@ -89,3 +89,6 @@ Route::post('trandings/newclass/update/{newclass}', [NewclasesController::class,
 // Discounts 
 Route::get('promotions/discounts', [DiscountsController::class, 'index'])->middleware('check.auth');
 Route::get('promotions/discounts/create-new', [DiscountsController::class, 'create_page'])->middleware('check.auth');
+Route::post('promotions/discounts/create-new', [DiscountsController::class, 'create_save'])->middleware('check.auth');
+Route::get('promotions/discounts/update/{discounts}', [DiscountsController::class, 'update_page'])->middleware('check.auth');
+Route::post('promotions/discounts/update/{discounts}', [DiscountsController::class, 'update_save'])->middleware('check.auth');

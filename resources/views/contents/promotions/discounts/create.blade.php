@@ -27,7 +27,7 @@
                 <h3 class="card-title">Create</h3>
             </div>
             <div class="card-body">
-                <form role="form" class="form-horizontal" method="post" action="{{ url('promotions/discounts/create-new') }}">
+                <form role="form" class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url('promotions/discounts/create-new') }}">
                     @csrf
                     <div class="form-group">
                       <label for="exampleInputEmail1">Name</label>
@@ -35,7 +35,22 @@
                           <input type="text" name="name" placeholder="Name" class="form-control">
                         </div>
                     </div>
-                        
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Price Discounts</label>
+                        <div class="col-sm-5">
+                          <input type="text" name="potongan" placeholder="Price Discounts" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label for="name_materi" class="col-sm-1 col-form-label">Images Discounts</label>
+                      <div class="col-sm-5">
+                        <input type="file" class="form-control-file" name="images">
+                        <small class="help-block">Extension must jpg, jpeg, png</small>
+                      </div>
+                    </div>
+
                     <div class="card-footer">
                       <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Discounts extends Model
 {
+    use SoftDeletes;
     protected $dates = ['deleted_at'];
 
     protected $table = 'discounts';
     protected $primaryKey = 'iddiscounts';
 
     protected $fillable = [
-        'name','percent','slug'
+        'name','potongan','slug','images'
     ];
 }

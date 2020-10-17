@@ -43,6 +43,7 @@
                             <option value="a" @if($users->role == 'a') selected @endif>Super Admin</option>
                             <option value="c" @if($users->role == 'c') selected @endif>Admin Class</option>
                             <option value="b" @if($users->role == 'b') selected @endif>Admin BUsines</option>
+                            <option value="b" @if($users->role == 'm') selected @endif>Admin Mitra Instructor</option>
                             <option value="i" @if($users->role == 'i') selected @endif>Instructor</option>
                             <option value="u" @if($users->role == 'u') selected @endif>User</option>
                         </select>

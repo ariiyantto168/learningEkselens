@@ -52,6 +52,8 @@
                                     Admin Class
                                 @elseif($user->role == 'b')
                                     Admin Business
+                                @elseif($user->role == 'm')
+                                    Mitra
                                 @elseif($user->role == 'i')
                                     Instructor
                                 @else
