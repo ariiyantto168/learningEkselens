@@ -19,7 +19,7 @@ class NewclasesController extends Controller
 
         // return $contents;
         
-        $pagecontent = view('contents.newclass.index', $contents);
+        $pagecontent = view('contents.trandings.newclass.index', $contents);
 
     	//masterpage
         $pagemain = array(
@@ -40,7 +40,7 @@ class NewclasesController extends Controller
         $contents = [
             'classes' => $clas,
         ];
-        $pagecontent = view('contents.newclass.create', $contents);
+        $pagecontent = view('contents.trandings.newclass.create', $contents);
 
     	//masterpage
         $pagemain = array(
@@ -66,5 +66,44 @@ class NewclasesController extends Controller
         $saveNclass->idclass = $request->idclass;
         $saveNclass->save();
         return redirect('trandings/newclass');
+    }
+
+    public function update_page(Newclases $newclass)
+    {
+
+        $contents = [
+            'classes' => Classes::all(),
+            'newclass' => Newclases::find($newclass->idnewclass)
+        ];
+
+        // return $content;
+
+        $pagecontent = view('contents.trandings.newclass.update',$contents);
+
+        // masterpage
+        $pagemain = array(
+            'title' => 'Update New Class',
+            'menu' => 'trandings',
+            'submenu' => 'newclass',
+            'pagecontent' => $pagecontent
+        );
+
+        return view('contents.masterpage', $pagemain);
+    }
+
+    public function update_save(Request $request,Newclases $newclass)
+    {
+
+        // $request->validate([
+        //     'name' => 'required',
+        // ]);
+
+         
+            $updateNewclass = Newclases::find($newclass->idnewclass);
+            $updateNewclass->name = $request->name;
+            $updateNewclass->idclass = $request->idclass;
+            $updateNewclass->save();
+            return redirect('trandings/newclass');
+            // return redirect('categories')->with('status_success','Update categories');
     }
 }

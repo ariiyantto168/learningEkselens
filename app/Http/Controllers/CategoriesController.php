@@ -18,7 +18,7 @@ class CategoriesController extends Controller
 
         // return $contents;
         
-        $pagecontent = view('contents.categories.index', $contents);
+        $pagecontent = view('contents.class.categories.index', $contents);
 
     	//masterpage
         $pagemain = array(
@@ -35,7 +35,7 @@ class CategoriesController extends Controller
     {
         $content = [
         ];
-        $pagecontent = view('contents.categories.create', $content);
+        $pagecontent = view('contents.class.categories.create', $content);
 
     	//masterpage
         $pagemain = array(
@@ -71,4 +71,40 @@ class CategoriesController extends Controller
         $saveCategories->save();
         return redirect('lecture/categories');
     }
+
+    public function update_page(Categories $categories)
+    {
+        $contents = [
+            'categories' => Categories::find($categories->idcategories)
+        ];
+
+        // return $content;
+
+        $pagecontent = view('contents.class.categories.update',$contents);
+
+        // masterpage
+        $pagemain = array(
+            'title' => 'Categories',
+            'menu' => 'lecture',
+            'submenu' => 'categories',
+            'pagecontent' => $pagecontent
+        );
+
+        return view('contents.masterpage', $pagemain);
+    }
+
+        public function update_save(Request $request,Categories $categories)
+        {
+
+            // $request->validate([
+            //     'name' => 'required',
+            // ]);
+
+         
+            $updateCategories = Categories::find($categories->idcategories);
+            $updateCategories->name = $request->name;
+            $updateCategories->save();
+            return redirect('lecture/categories');
+            // return redirect('categories')->with('status_success','Update categories');
+        }
 }

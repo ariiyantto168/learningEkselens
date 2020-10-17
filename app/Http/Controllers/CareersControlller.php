@@ -19,7 +19,7 @@ class CareersControlller extends Controller
 
         // return $contents;
         
-        $pagecontent = view('contents.careers.index', $contents);
+        $pagecontent = view('contents.trandings.careers.index', $contents);
 
     	//masterpage
         $pagemain = array(
@@ -40,7 +40,7 @@ class CareersControlller extends Controller
             'classes' => $clas,
         ];
         
-        $pagecontent = view('contents.careers.create', $contents);
+        $pagecontent = view('contents.trandings.careers.create', $contents);
 
     	//masterpage
         $pagemain = array(
@@ -68,4 +68,45 @@ class CareersControlller extends Controller
         $saveCareers->save();
         return redirect('trandings/careers');
     }
+
+    public function update_page(Careers $careers)
+    {
+
+        $contents = [
+            'classes' => Classes::all(),
+            'careers' => Careers::find($careers->idcareers)
+        ];
+
+        // return $content;
+
+        $pagecontent = view('contents.trandings.careers.update',$contents);
+
+        // masterpage
+        $pagemain = array(
+            'title' => 'Update Career Ready Program',
+            'menu' => 'trandings',
+            'submenu' => 'careers',
+            'pagecontent' => $pagecontent
+        );
+
+        return view('contents.masterpage', $pagemain);
+    }
+
+    public function update_save(Request $request,Careers $careers)
+    {
+
+        // $request->validate([
+        //     'name' => 'required',
+        // ]);
+
+         
+            $updateCareers = Careers::find($careers->idcareers);
+            $updateCareers->name = $request->name;
+            $updateCareers->idclass = $request->idclass;
+            $updateCareers->save();
+            return redirect('trandings/careers');
+            // return redirect('categories')->with('status_success','Update categories');
+    }
+
+    
 }

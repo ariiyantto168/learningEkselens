@@ -12,6 +12,7 @@ use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PopulersController;
 use App\Http\Controllers\CareersControlller;
 use App\Http\Controllers\NewclasesController;
+use App\Http\Controllers\TestimoniesController;
 
 // ====================================================//
 
@@ -34,6 +35,8 @@ Route::post('privileges/module/create-new', [ModuleController::class, 'create_sa
 Route::get('lecture/categories', [CategoriesController::class, 'index'])->middleware('check.auth');
 Route::get('lecture/categories/create-new', [CategoriesController::class, 'create_page'])->middleware('check.auth');
 Route::post('lecture/categories/create-new', [CategoriesController::class, 'create_save'])->middleware('check.auth');
+Route::get('lecture/categories/update/{categories}', [CategoriesController::class, 'update_page'])->middleware('check.auth');
+Route::post('lecture/categories/update/{categories}', [CategoriesController::class, 'update_save'])->middleware('check.auth');
 
 // class
 Route::get('lecture/class', [ClassController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
@@ -52,7 +55,10 @@ Route::delete('lecture/class/detail/{class}/delete-materies/{materies}', [ClassC
 // Route::get('lecture/class/update/{classes}', [ClassController::class, 'update_page'])->middleware('check.auth');
 // Route::get('lecture/class/view/{classes}', [ClassController::class, 'view_page'])->middleware('check.auth');
 
-
+// Testimonies Users
+Route::get('lecture/testimonies', [TestimoniesController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
+Route::get('lecture/testimonies/create-new', [TestimoniesController::class, 'create_page'])->middleware('check.auth');
+Route::post('lecture/testimonies/create-new', [TestimoniesController::class, 'create_save'])->middleware('check.auth');
 
 // comments
 Route::get('lecture/comments', [CommentsController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
@@ -61,16 +67,23 @@ Route::get('lecture/comments', [CommentsController::class, 'index'])->middleware
 Route::get('trandings/populers', [PopulersController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
 Route::get('trandings/populers/create-new', [PopulersController::class, 'create_page'])->middleware('check.auth');
 Route::post('trandings/populers/create-new', [PopulersController::class, 'create_save'])->middleware('check.auth');
+Route::get('trandings/populers/update/{populers}', [PopulersController::class, 'update_page'])->middleware('check.auth');
+Route::post('trandings/populers/update/{populers}', [PopulersController::class, 'update_save'])->middleware('check.auth');
+
 
 // careers ready program
 Route::get('trandings/careers', [CareersControlller::class, 'index'])->middleware('check.auth')->middleware('check.auth');
 Route::get('trandings/careers/create-new', [CareersControlller::class, 'create_page'])->middleware('check.auth');
 Route::post('trandings/careers/create-new', [CareersControlller::class, 'create_save'])->middleware('check.auth');
+Route::get('trandings/careers/update/{careers}', [CareersControlller::class, 'update_page'])->middleware('check.auth');
+Route::post('trandings/careers/update/{careers}', [CareersControlller::class, 'update_save'])->middleware('check.auth');
 
 // careers ready program
 Route::get('trandings/newclass', [NewclasesController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
 Route::get('trandings/newclass/create-new', [NewclasesController::class, 'create_page'])->middleware('check.auth');
 Route::post('trandings/newclass/create-new', [NewclasesController::class, 'create_save'])->middleware('check.auth');
+Route::get('trandings/newclass/update/{newclass}', [NewclasesController::class, 'update_page'])->middleware('check.auth');
+Route::post('trandings/newclass/update/{newclass}', [NewclasesController::class, 'update_save'])->middleware('check.auth');
 
 
 // Discounts 

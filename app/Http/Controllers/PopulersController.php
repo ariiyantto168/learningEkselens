@@ -22,7 +22,7 @@ class PopulersController extends Controller
 
         // return $contents;
         
-        $pagecontent = view('contents.populers.index', $contents);
+        $pagecontent = view('contents.trandings.populers.index', $contents);
 
     	//masterpage
         $pagemain = array(
@@ -43,7 +43,7 @@ class PopulersController extends Controller
             'classes' => $clas,
         ];
 
-        $pagecontent = view('contents.populers.create', $contents);
+        $pagecontent = view('contents.trandings.populers.create', $contents);
 
     	//masterpage
         $pagemain = array(
@@ -70,5 +70,44 @@ class PopulersController extends Controller
         $savePopulers->idclass = $request->idclass;
         $savePopulers->save();
         return redirect('trandings/populers');
+    }
+
+    public function update_page(Populers $populers)
+    {
+
+        $contents = [
+            'classes' => Classes::all(),
+            'populers' => Populers::find($populers->idpopulers)
+        ];
+
+        // return $content;
+
+        $pagecontent = view('contents.trandings.populers.update',$contents);
+
+        // masterpage
+        $pagemain = array(
+            'title' => 'Update Kelas Populers',
+            'menu' => 'trandings',
+            'submenu' => 'populers',
+            'pagecontent' => $pagecontent
+        );
+
+        return view('contents.masterpage', $pagemain);
+    }
+
+    public function update_save(Request $request,Populers $populers)
+    {
+
+        // $request->validate([
+        //     'name' => 'required',
+        // ]);
+
+         
+            $updatePopulers = Populers::find($populers->idpopulers);
+            $updatePopulers->name = $request->name;
+            $updatePopulers->idclass = $request->idclass;
+            $updatePopulers->save();
+            return redirect('trandings/populers');
+            // return redirect('categories')->with('status_success','Update categories');
     }
 }

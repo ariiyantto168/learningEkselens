@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">New Class</h1>
+            <h1 class="m-0 text-dark">Create Kelas Populer</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item active">Trandings</li>
-              <li class="breadcrumb-item active"><a href="{{ url('trandings/newclass') }}">New Class</a></li>
+              <li class="breadcrumb-item active"><a href="{{ url('trandings/populers') }}">Populers</a></li>
               <li class="breadcrumb-item active">Create-new</li>
 
             </ol>
@@ -27,12 +27,12 @@
                 <h3 class="card-title">Create</h3>
             </div>
             <div class="card-body">
-                <form role="form" class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url('trandings/newclass/create-new') }}">
+                <form role="form" class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url('trandings/populers/update/'.$populers->idpopulers) }}">
                     @csrf
                     <div class="form-group">
                       <label for="exampleInputEmail1">Name</label>
                         <div class="col-sm-5">
-                          <input type="text" name="name" placeholder="Name" class="form-control">
+                            <input type="text" name="name" value="{{$populers->name}}" class="form-control">
                         </div>
                     </div>
                     
@@ -51,6 +51,11 @@
                           $image = []; 
                         @endphp
                           @foreach ($classes as $cls)
+                           <option value="{{$cls->idclass}}" @if ($cls->idclass == $populers->idclass) 
+                                selected
+                            @endif>{{$cls->name}}</option>
+
+
                             @php
                               $instructor[$cls->idclass] = $cls->instructor;
                               $roleins[$cls->idclass] = $cls->roleinstructor;
@@ -59,47 +64,47 @@
                               $price[$cls->idclass] = $cls->price;
                               $rating[$cls->idclass] = $cls->rating;       
                             @endphp
-                            <option value="{{$cls->idclass}}">{{$cls->name}}</option>
                           @endforeach
                       </select>
                     </div>
                   </div>
 
                   <div class="form-group">
+                    <label for="exampleInputEmail1">Price</label>
+                      <div class="col-sm-5">
+                        <input type="text" name="price" onchange="passing_value(this.value)" id="price" readonly value="{{$populers->classes->price}}" class="form-control">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
                     <label for="exampleInputEmail1">Nama Instructor</label>
                       <div class="col-sm-5">
-                        <input type="text" name="instructor" onchange="passing_value(this.value)" id="instructor" placeholder="Instructor" class="form-control">
+                      <input type="text" name="instructor" onchange="passing_value(this.value)" id="instructor" readonly value="{{$populers->classes->instructor}}" class="form-control">
                       </div>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Role Instructor</label>
                       <div class="col-sm-5">
-                        <input type="text" name="roleinstructor" onchange="passing_value(this.value)" id="roleinstructor" placeholder="Role Instructor" class="form-control">
+                        <input type="text" name="roleinstructor" onchange="passing_value(this.value)" id="roleinstructor" readonly value="{{$populers->classes->roleinstructor}}" class="form-control">
                       </div>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Durasi</label>
                       <div class="col-sm-5">
-                        <input type="text" name="duration" onchange="passing_value(this.value)" id="duration" placeholder="Duration" class="form-control">
+                        <input type="text" name="duration" onchange="passing_value(this.value)" id="duration" readonly value="{{$populers->classes->duration}}" class="form-control">
                       </div>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Tutor</label>
                       <div class="col-sm-5">
-                        <input type="text" name="tutor" onchange="passing_value(this.value)" id="tutor" placeholder="Tutor" class="form-control">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Price</label>
-                      <div class="col-sm-5">
-                        <input type="text" name="price" onchange="passing_value(this.value)" id="price" placeholder="Price" class="form-control">
+                        <input type="text" name="tutor" onchange="passing_value(this.value)" id="tutor" readonly value="{{$populers->classes->tutor}}" class="form-control">
                       </div>
                   </div>
 
                   <div class="form-group">
                     <label for="exampleInputEmail1">Rating</label>
                       <div class="col-sm-5">
-                        <input type="text" name="rating" onchange="passing_value(this.value)" id="rating" placeholder="Rating" class="form-control">
+                        <input type="text" name="rating" onchange="passing_value(this.value)" id="rating" readonly value="{{$populers->classes->rating}}" class="form-control">
                       </div>
                   </div>
                   

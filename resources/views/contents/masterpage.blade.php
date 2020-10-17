@@ -186,9 +186,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('lecture/comments') }}" class="nav-link" id="submenu_class">
+                <a href="{{ url('lecture/comments') }}" class="nav-link" id="submenu_comments">
                   <i class="fas fa-comments nav-icon"></i>
                   <p>Komen</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('lecture/testimonies') }}" class="nav-link" id="submenu_testimonies">
+                  <i class="fas fa-user-graduate nav-icon"></i>
+                  <p>Testimonies Users</p>
                 </a>
               </li>
             </ul>
@@ -241,13 +247,13 @@
               {{-- @endif --}}
               <li class="nav-item">
                 <a href="{{ url('trandings/careers') }}" class="nav-link" id="submenu_careers">
-                  <i class="fas fa-school nav-icon"></i>
+                  <i class="fas fa-briefcase nav-icon"></i>
                   <p>Karir Ready program</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ url('trandings/newclass') }}" class="nav-link" id="submenu_class">
-                  <i class="fas fa-comments nav-icon"></i>
+                  <i class="fas fa-chalkboard-teacher nav-icon"></i>
                   <p>Kelas Terbaru</p>
                 </a>
               </li>

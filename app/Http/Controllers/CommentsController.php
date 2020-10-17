@@ -17,7 +17,7 @@ class CommentsController extends Controller
 
         // return $contents;
         
-        $pagecontent = view('contents.comments.index', $contents);
+        $pagecontent = view('contents.class.comments.index', $contents);
 
     	//masterpage
         $pagemain = array(

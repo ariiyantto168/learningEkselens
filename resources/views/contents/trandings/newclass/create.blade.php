@@ -9,7 +9,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item active">Trandings</li>
-              <li class="breadcrumb-item active"><a href="{{ url('trandings/populers') }}">Populers</a></li>
+              <li class="breadcrumb-item active"><a href="{{ url('trandings/newclass') }}">New Class</a></li>
               <li class="breadcrumb-item active">Create-new</li>
 
             </ol>
@@ -27,7 +27,7 @@
                 <h3 class="card-title">Create</h3>
             </div>
             <div class="card-body">
-                <form role="form" class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url('trandings/populers/create-new') }}">
+                <form role="form" class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url('trandings/newclass/create-new') }}">
                     @csrf
                     <div class="form-group">
                       <label for="exampleInputEmail1">Name</label>
@@ -66,40 +66,40 @@
                   </div>
 
                   <div class="form-group">
+                    <label for="exampleInputEmail1">Price</label>
+                      <div class="col-sm-5">
+                        <input type="text" name="price" readonly onchange="passing_value(this.value)" id="price" placeholder="Price" class="form-control">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
                     <label for="exampleInputEmail1">Nama Instructor</label>
                       <div class="col-sm-5">
-                        <input type="text" name="instructor" onchange="passing_value(this.value)" id="instructor" placeholder="Instructor" class="form-control">
+                        <input type="text" name="instructor" readonly onchange="passing_value(this.value)" id="instructor" placeholder="Instructor" class="form-control">
                       </div>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Role Instructor</label>
                       <div class="col-sm-5">
-                        <input type="text" name="roleinstructor" onchange="passing_value(this.value)" id="roleinstructor" placeholder="Role Instructor" class="form-control">
+                        <input type="text" name="roleinstructor" readonly onchange="passing_value(this.value)" id="roleinstructor" placeholder="Role Instructor" class="form-control">
                       </div>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Durasi</label>
                       <div class="col-sm-5">
-                        <input type="text" name="duration" onchange="passing_value(this.value)" id="duration" placeholder="Duration" class="form-control">
+                        <input type="text" name="duration" readonly onchange="passing_value(this.value)" id="duration" placeholder="Duration" class="form-control">
                       </div>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Tutor</label>
                       <div class="col-sm-5">
-                        <input type="text" name="tutor" onchange="passing_value(this.value)" id="tutor" placeholder="Tutor" class="form-control">
+                        <input type="text" name="tutor" readonly onchange="passing_value(this.value)" id="tutor" placeholder="Tutor" class="form-control">
                       </div>
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Price</label>
-                      <div class="col-sm-5">
-                        <input type="text" name="price" onchange="passing_value(this.value)" id="price" placeholder="Price" class="form-control">
-                      </div>
-                  </div>
-
                   <div class="form-group">
                     <label for="exampleInputEmail1">Rating</label>
                       <div class="col-sm-5">
-                        <input type="text" name="rating" onchange="passing_value(this.value)" id="rating" placeholder="Rating" class="form-control">
+                        <input type="text" name="rating" readonly onchange="passing_value(this.value)" id="rating" placeholder="Rating" class="form-control">
                       </div>
                   </div>
                   
