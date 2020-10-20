@@ -233,6 +233,21 @@ class ClassController extends Controller
     public function delete_materies(Classes $class,Materies $materies)
     {
         $materies = Materies::find($materies->idmateries);
+
+        if (!empty($materies->video480)) {
+            $path_video480 = env('CDN_URL').'video480/'.$materies->video480; 
+            if(File::exists($path_video480)){
+                File::delete($path_video480); 
+            }
+        }
+
+        if (!empty($materies->video720)) {
+            $path_video720 = env('CDN_URL').'video720/'.$materies->video720; 
+            if(File::exists($path_video720)){
+                File::delete($path_video720); 
+            }
+        }
+
         $materies->delete();
         return response()->json(array('materies'=> $materies), 200);
 

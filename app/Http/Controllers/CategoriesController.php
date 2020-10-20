@@ -100,9 +100,27 @@ class CategoriesController extends Controller
             //     'name' => 'required',
             // ]);
 
+
+            if (!empty($categories->images)) {
+                if (!empty($request->images)) {
+                    $path_image = env('CDN_URL').'image/'.$categories->images; 
+                    if(File::exists($path_image)){
+                        $images = $request->file('images');
+                        $filename = Str::random(20).'.'.$images->getClientOriginalExtension();
+                        $cdnpath =  env('CDN_URL').'image/';
+                        $images->move($cdnpath,$filename);
+                    }
+                    File::delete($path_image);
+                    
+                }else{
+                    $filename = $categories->images;
+                }
+            }
+
          
             $updateCategories = Categories::find($categories->idcategories);
             $updateCategories->name = $request->name;
+            $updateCategories->images = $filename;
             $updateCategories->save();
             return redirect('lecture/categories');
             // return redirect('categories')->with('status_success','Update categories');

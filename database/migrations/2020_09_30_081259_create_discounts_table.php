@@ -19,8 +19,8 @@ class CreateDiscountsTable extends Migration
             $table->string('images');
             $table->string('potongan');
             $table->string('slug');
-            $table->date('start_date');
-            $table->date('end_date');
+            // $table->date('start_date');
+            // $table->date('end_date');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -95,9 +95,23 @@ class DiscountsController extends Controller
     public function update_save(Request $request,Discounts $discounts)
     {
 
+
+        $filename = NULL;
+        if (!empty($discounts->images)) {
+            $path_image = env('CDN_URL').'discounts/'.$discounts->images; 
+            if(File::exists($path_image)){
+                $images = $request->file('images');
+                $filename = Str::random(20).'.'.$images->getClientOriginalExtension();
+                $cdnpath =  env('CDN_URL').'discounts/';
+                $images->move($cdnpath,$filename);
+            }
+            File::delete($path_image);
+        }
+
         $saveDiscounts = Discounts::find($discounts->iddiscounts);
         $saveDiscounts->name = $request->name;
         $saveDiscounts->potongan = $request->potongan;
+        $saveDiscounts->images = $filename;
         $saveDiscounts->slug =  $slug = Str::slug($request->name, '-');
         // return $saveDiscounts;
         $saveDiscounts->save();
