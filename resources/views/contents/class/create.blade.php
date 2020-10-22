@@ -36,6 +36,7 @@
           @csrf
           <div class="row">
               <div class="col-12">
+                @include('contents.allmessage')
                   <div class="card card-primary">
                       <div class="card-header">
                           <h3 class="card-title">
@@ -60,7 +61,7 @@
                             <input type="text" class="form-control" name="name" placeholder="Name">
                           </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Harga</label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" name="price" placeholder="Harga Kelas">
@@ -89,7 +90,7 @@
                           <div class="col-sm-10">
                             <input type="number" class="form-control" name="rating" placeholder="Rating">
                           </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Tutor</label>
                           <div class="col-sm-10">
@@ -102,13 +103,13 @@
                             <textarea class="form-control" name="description"  cols="30" rows="10"></textarea>
                           </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Images Instructor</label>
                           <div class="col-sm-10">
                             <input type="file" class="form-control-file" name="imagesinstructor">
                             <small class="help-block">Extension must jpg, jpeg, png</small>
                           </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Images Kelas</label>
                           <div class="col-sm-10">
@@ -126,7 +127,7 @@
                         <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label"></label>
                           <div class="col-sm-10">
-                            <a href="{{ url('class') }}" class="btn btn-default" >Cancel </a>
+                            <a href="{{ url('class') }}" class="btn btn-warning" >Cancel </a>
                             <div class="float-right">
                               <input type="submit" class="btn btn-success" value="Save">
                             </div>

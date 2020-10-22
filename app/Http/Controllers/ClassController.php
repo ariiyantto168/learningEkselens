@@ -55,31 +55,82 @@ class ClassController extends Controller
 
     public function create_save(Request $request)
     {
-        // return $request->all();
+        // // return $request->all();
+        // $request->validate([
+        //     'name' => 'required',
+        //     'tutor' => 'required',
+        //     'description' => 'required',
+        //     'images' => 'required|file|mimes:jpg,jpeg,png|max:50000',
+        //     'demo' => 'required|file|mimes:mp4',
+        // ]);
+
+        // $getsize = filesize($request->file('demo'));
+        // if ($getsize < 31500000) {
+        //     return redirect()->back()->with('status_error','Demo video is too large');
+        //     // 'validate';
+        // }
+
+        // // return $getsize;
+        // if($request->hasFile('images')){
+        //     $file = $request->file('images');
+        //     $filename = time()."_".$file->getClientOriginalName();
+        //     $destinasi = env('CDN_URL').'image/'; 
+        //     $file->move($destinasi, $filename);
+        // }
+
+        // // if($request->hasFile('imagesinstructor')){
+        // //     $fileinstructor = $request->file('imagesinstructor');
+        // //     $nameinstructor = time()."_".$fileinstructor->getClientOriginalName();
+        // //     $destinasi = env('CDN_URL').'instructor/'; 
+        // //     $fileinstructor->move($destinasi, $nameinstructor);
+        // // }
+
+        // if($request->hasFile('demo')){
+        //     $demo = $request->file('demo');
+        //     $demo_file = time()."_".$demo->getClientOriginalName();
+        //     $destinasi = env('CDN_URL').'demo/'; 
+        //     $demo->move($destinasi, $demo_file);
+        // }
+
+        // $save_class = new Classes;
+        // $save_class->name = $request->name;
+        // $save_class->slug =  $slug = Str::slug($request->name, '-');
+        // $save_class->idcategories = $request->idcategories;
+        // $save_class->tutor = $request->tutor;
+        // $save_class->instructor = $request->instructor;
+        // $save_class->roleinstructor = $request->roleinstructor;
+        // $save_class->price = $request->price;
+        // $save_class->rating = $request->rating;
+        // $save_class->duration = $request->duration;
+        // $save_class->description = $request->description;
+        // $save_class->images = $filename;
+        // // $save_class->imagesinstructor = $nameinstructor;
+        // $save_class->images = $filename;
+        // $save_class->demo = $demo_file;
+        // $save_class->save();
+        // return $save_class;
+
+        // return redirect('lecture/class/detail/'.$save_class->idclass);
+
+
         $request->validate([
             'name' => 'required',
             'tutor' => 'required',
-            'instructor' => 'required',
             'description' => 'required',
-            'imagesinstructor' => 'required',
-            'images' => 'required',
-            'demo' => 'required',
-            // 'images' => 'required|file|mimes:jpg,jpeg,png|max:50000',
-            // 'demo' => 'required|file|mimes:mp4|max:100000',
+            'images' => 'required|file|mimes:jpg,jpeg,png|max:50000',
+            'demo' => 'required|file|mimes:mp4',
         ]);
 
+        $getsize = filesize($request->file('demo'));
+        if ($getsize > 31500000) {
+            return redirect()->back()->with('status_error','Demo video is too large');
+        }
+     
         if($request->hasFile('images')){
             $file = $request->file('images');
             $filename = time()."_".$file->getClientOriginalName();
             $destinasi = env('CDN_URL').'image/'; 
             $file->move($destinasi, $filename);
-        }
-
-        if($request->hasFile('imagesinstructor')){
-            $fileinstructor = $request->file('imagesinstructor');
-            $nameinstructor = time()."_".$fileinstructor->getClientOriginalName();
-            $destinasi = env('CDN_URL').'instructor/'; 
-            $fileinstructor->move($destinasi, $nameinstructor);
         }
 
         if($request->hasFile('demo')){
@@ -90,24 +141,17 @@ class ClassController extends Controller
         }
 
         $save_class = new Classes;
-        $save_class->name = $request->name;
-        $save_class->slug =  $slug = Str::slug($request->name, '-');
         $save_class->idcategories = $request->idcategories;
+        $save_class->name = $request->name;
         $save_class->tutor = $request->tutor;
-        $save_class->instructor = $request->instructor;
-        $save_class->roleinstructor = $request->roleinstructor;
-        $save_class->price = $request->price;
-        $save_class->rating = $request->rating;
-        $save_class->duration = $request->duration;
         $save_class->description = $request->description;
         $save_class->images = $filename;
-        $save_class->imagesinstructor = $nameinstructor;
-        $save_class->imagesinstructor = $demo_file;
         $save_class->demo = $demo_file;
         $save_class->save();
-        // return $save_class;
 
-        return redirect('lecture/class/detail/'.$save_class->idclass);
+        // return redirect('class/detail/'.$save_class->idclass);
+                return redirect('lecture/class/detail/'.$save_class->idclass);
+
     }
 
     public function class_detail(Classes $class)
@@ -177,6 +221,7 @@ class ClassController extends Controller
 
     public function addmateries(Classes $class, Request $request)
     {
+        
         // keterangan validate required not null
         if (empty($request->name_materies)) {
             return redirect()->back()->with('status_error', 'name materies is required ');

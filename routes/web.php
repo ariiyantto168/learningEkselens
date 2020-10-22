@@ -13,6 +13,7 @@ use App\Http\Controllers\PopulersController;
 use App\Http\Controllers\CareersControlller;
 use App\Http\Controllers\NewclasesController;
 use App\Http\Controllers\TestimoniesController;
+use App\Http\Controllers\WhislistsController;
 
 // ====================================================//
 
@@ -59,6 +60,11 @@ Route::delete('lecture/class/detail/{class}/delete-materies/{materies}', [ClassC
 Route::get('lecture/testimonies', [TestimoniesController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
 Route::get('lecture/testimonies/create-new', [TestimoniesController::class, 'create_page'])->middleware('check.auth');
 Route::post('lecture/testimonies/create-new', [TestimoniesController::class, 'create_save'])->middleware('check.auth');
+
+// My whislists Users
+Route::get('lecture/whislists', [WhislistsController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
+Route::get('lecture/whislists/create-new', [WhislistsController::class, 'create_page'])->middleware('check.auth');
+Route::post('lecture/whislists/create-new', [WhislistsController::class, 'create_save'])->middleware('check.auth');
 
 // comments
 Route::get('lecture/comments', [CommentsController::class, 'index'])->middleware('check.auth')->middleware('check.auth');

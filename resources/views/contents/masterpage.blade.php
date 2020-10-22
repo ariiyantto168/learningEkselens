@@ -197,6 +197,12 @@
                   <p>Testimonies Users</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ url('lecture/whislists') }}" class="nav-link" id="submenu_whislists">
+                  <i class="fas fa-heart nav-icon"></i>
+                  <p>Whislists Users</p>
+                </a>
+              </li>
             </ul>
           </li>
 
