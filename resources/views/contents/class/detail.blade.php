@@ -387,8 +387,8 @@
                           content +=  '<tr id="remove_'+value.idmateries+'">'
                                       +'<td><a class="btn btn-xs"><i class="fas fa-trash" id="remove-materies" onclick="remove_materies('+response.subclass.idclass+','+value.idmateries+')"></i></a></td>'
                                       +'<td>'+value.name_materi+'</td>'
-                                      +'<td><iframe src="{{ env('PATH_URL')}}video480/'+value.video480+'" frameborder="0"></iframe> </td>'
-                                      +'<td><iframe src="{{ env('PATH_URL')}}video720/'+value.video720+'" frameborder="0"></iframe> </td>'
+                                      +'<td><iframe src="{{ env('PATH_URL')}}video480/'+value.video_480+'" frameborder="0"></iframe> </td>'
+                                      +'<td><iframe src="{{ env('PATH_URL')}}video720/'+value.video_720+'" frameborder="0"></iframe> </td>'
                                       +'</tr>'
                       });
                       $('#tr-view-show').html(content)

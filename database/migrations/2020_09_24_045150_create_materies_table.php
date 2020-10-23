@@ -18,8 +18,8 @@ class CreateMateriesTable extends Migration
             $table->integer('idsubclass');
             $table->string('name_materi');
             $table->string('slug');
-            $table->string('video480');
-            $table->string('video720');
+            $table->string('video_480');
+            $table->string('video_720');
             $table->softDeletes();
             $table->timestamps();
             $table->string('created_by');

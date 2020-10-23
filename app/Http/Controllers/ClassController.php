@@ -150,7 +150,7 @@ class ClassController extends Controller
         $save_class->save();
 
         // return redirect('class/detail/'.$save_class->idclass);
-                return redirect('lecture/class/detail/'.$save_class->idclass);
+        return redirect('lecture/class/detail/'.$save_class->idclass)->with('status_success','Successfuly Add Kelas Lanjutkan Mengisi Data Sub Kelas, Data Materi Kelas dan Hilights kelas');
 
     }
 
@@ -197,7 +197,7 @@ class ClassController extends Controller
             $save_subclass->save();
         }
 
-        return redirect('lecture/class/detail/'.$class->idclass);
+        return redirect('lecture/class/detail/'.$class->idclass)->with('status_success','Successfuly Add Subclass Lanjutkan Membuat Materi Kelas');
     }
 
     public function addhilights(Classes $class, Request $request)
@@ -216,15 +216,25 @@ class ClassController extends Controller
             $saveHilights->save();
         }
 
-        return redirect('lecture/class/detail/'.$class->idclass);
+        return redirect('lecture/class/detail/'.$class->idclass)->with('status_success','Successfuly Add Hilights Kelas');
     }
 
     public function addmateries(Classes $class, Request $request)
     {
+        $request->validate([
+            'name_materies' => 'required',
+            'video_480' => 'required',
+            'video_720' => 'required',
+        ]);
+       
         
         // keterangan validate required not null
         if (empty($request->name_materies)) {
             return redirect()->back()->with('status_error', 'name materies is required ');
+        }elseif (empty($request->video_480)) {
+            return redirect()->back()->with('status_error', 'video 480 is required ');
+        }elseif (empty($request->video_720)) {
+            return redirect()->back()->with('status_error', 'video 720 is required ');
         }
         // validate extension 
         for ($i=0; $i < count($request->video_480); $i++) {
@@ -241,6 +251,17 @@ class ClassController extends Controller
 
         for ($i=0; $i < count($request->name_materies) ; $i++) { 
 
+            $size480 = filesize($request->file('video_480')[$i]);
+            if ($size480 > 31500000) {
+                return redirect()->back()->with('status_error','video 480 video is to large maximum 30 mb');
+            }
+
+            $size720 = filesize($request->file('video_720')[$i]);
+            if ($size720 > 51500000) {
+                return redirect()->back()->with('status_error','video 720 video is too large maximum 50 mb');
+            }
+
+
             $name_480 = Str::random(20)."_".$request->file('video_480')[$i]->getClientOriginalName();
             $path_480 = env('CDN_URL').'video480/'; 
             $request->file('video_480')[$i]->move($path_480, $name_480);
@@ -253,8 +274,8 @@ class ClassController extends Controller
             $save_materies->idsubclass = $request->add_idsubclass;
             $save_materies->name_materi = $request->name_materies[$i];
             $save_materies->slug =  $slug = Str::slug($request->name_materies[$i], '-');
-            $save_materies->video480 = $name_480;
-            $save_materies->video720 = $name_720;
+            $save_materies->video_480 = $name_480;
+            $save_materies->video_720 = $name_720;
             $save_materies->save();
 
         }

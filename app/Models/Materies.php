@@ -15,7 +15,7 @@ class Materies extends Model
     protected $primaryKey = 'idmateries';
 
     protected $fillable = [
-        'materi',
+        'materi','video_480','video_720'
     ];
 
     protected static function boot()
