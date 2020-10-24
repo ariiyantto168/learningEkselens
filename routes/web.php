@@ -32,6 +32,10 @@ Route::get('privileges/module', [ModuleController::class, 'index'])->middleware(
 Route::get('privileges/module/create-new', [ModuleController::class, 'create_page'])->middleware('check.auth');
 Route::post('privileges/module/create-new', [ModuleController::class, 'create_save'])->middleware('check.auth');
 
+// privileges -> adduser
+Route::get('privileges/users/create-new', [UsersController::class, 'addusers'])->middleware('check.auth');
+Route::post('privileges/users/create-new', [UsersController::class, 'addusers_save'])->middleware('check.auth');
+
 // Categories
 Route::get('lecture/categories', [CategoriesController::class, 'index'])->middleware('check.auth');
 Route::get('lecture/categories/create-new', [CategoriesController::class, 'create_page'])->middleware('check.auth');

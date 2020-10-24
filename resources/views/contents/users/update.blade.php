@@ -29,7 +29,7 @@
                 <h3 class="card-title">Update</h3>
             </div>
             <div class="card-body">
-                <form role="form" method="post" action="{{ url('privileges/users/update/'.$users->idusers) }}">
+                <form role="form" method="post" enctype="multipart/form-data" action="{{ url('privileges/users/update/'.$users->idusers) }}">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">Name</label>
@@ -53,6 +53,15 @@
                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="{{ $users->email }}">
                     </div>
                         
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Images Profile</label>
+                      <div class="col-sm-5">
+                      <input type="file" name="image" class="form-control">
+                      <br>
+                      <img class="img-rounded zoom" id="img-upload" src="{{env('PATH_URL')}}imagesprofile/{{$users->image}}" width="100">
+                    </div>
+                  </div>
+
                     <div class="card-footer">
                       <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
