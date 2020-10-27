@@ -65,7 +65,8 @@
                                 {{ date('Y-m-d H:i:s',strtotime($user->last_login)) }}
                             </td>
                             <td>
-                                <a href="{{ url('privileges/users/update/'.$user->idusers) }}"><i class="fas fa-edit"></i></a>
+                                <a href="{{ url('privileges/users/update/'.$user->idusers) }}"><i class="fas fa-edit" title="update user privileges"></i></a>
+                                <a href="{{ url('privileges/users/create-profile/'.$user->idusers) }}"><i class="far fa-id-card"></i></a>
                             </td>
                         </tr>
                         @endforeach

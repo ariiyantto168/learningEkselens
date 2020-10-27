@@ -91,26 +91,7 @@ class ClassController extends Controller
         //     $destinasi = env('CDN_URL').'demo/'; 
         //     $demo->move($destinasi, $demo_file);
         // }
-
-        // $save_class = new Classes;
-        // $save_class->name = $request->name;
-        // $save_class->slug =  $slug = Str::slug($request->name, '-');
-        // $save_class->idcategories = $request->idcategories;
-        // $save_class->tutor = $request->tutor;
-        // $save_class->instructor = $request->instructor;
-        // $save_class->roleinstructor = $request->roleinstructor;
-        // $save_class->price = $request->price;
-        // $save_class->rating = $request->rating;
-        // $save_class->duration = $request->duration;
-        // $save_class->description = $request->description;
-        // $save_class->images = $filename;
         // // $save_class->imagesinstructor = $nameinstructor;
-        // $save_class->images = $filename;
-        // $save_class->demo = $demo_file;
-        // $save_class->save();
-        // return $save_class;
-
-        // return redirect('lecture/class/detail/'.$save_class->idclass);
 
 
         $request->validate([
@@ -118,6 +99,7 @@ class ClassController extends Controller
             'tutor' => 'required',
             'description' => 'required',
             'images' => 'required|file|mimes:jpg,jpeg,png|max:50000',
+            'imagesinstructor' => 'required|file|mimes:jpg,jpeg,png|max:50000',
             'demo' => 'required|file|mimes:mp4',
         ]);
 
@@ -133,6 +115,13 @@ class ClassController extends Controller
             $file->move($destinasi, $filename);
         }
 
+        if($request->hasFile('imagesinstructor')){
+            $file = $request->file('imagesinstructor');
+            $fileins = time()."_".$file->getClientOriginalName();
+            $destinasi = env('CDN_URL').'instructor/'; 
+            $file->move($destinasi, $fileins);
+        }
+
         if($request->hasFile('demo')){
             $demo = $request->file('demo');
             $demo_file = time()."_".$demo->getClientOriginalName();
@@ -143,9 +132,16 @@ class ClassController extends Controller
         $save_class = new Classes;
         $save_class->idcategories = $request->idcategories;
         $save_class->name = $request->name;
+        $save_class->slug =  $slug = Str::slug($request->name, '-');
         $save_class->tutor = $request->tutor;
+        $save_class->instructor = $request->instructor;
+        $save_class->roleinstructor = $request->roleinstructor;
+        $save_class->price = $request->price;
+        $save_class->rating = $request->rating;
+        $save_class->duration = $request->duration;
         $save_class->description = $request->description;
         $save_class->images = $filename;
+        $save_class->imagesinstructor = $fileins;
         $save_class->demo = $demo_file;
         $save_class->save();
 

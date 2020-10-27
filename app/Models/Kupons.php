@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Discounts extends Model
+class Kupons extends Model
 {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
-    protected $table = 'discounts';
-    protected $primaryKey = 'iddiscounts';
+    protected $table = 'kupons';
+    protected $primaryKey = 'idkupons';
 
     protected $fillable = [
         'name','potongan','slug','images'

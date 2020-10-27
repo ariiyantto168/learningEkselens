@@ -42,6 +42,50 @@
                           <input type="text" name="potongan" placeholder="Price Discounts" class="form-control">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                      <label>Kelas</label>
+                      <div class="col-sm-5">
+                      <select class="form-control" id="idclass" name="idclass" onchange="passing_value(this.value)">
+                        <option>-- select Kelas -- </option>
+                        @php
+                          $price = [];
+                        @endphp
+                          @foreach ($classes as $cls)
+                            @php
+                              $price[$cls->idclass] = $cls->price;     
+                            @endphp
+                            <option value="{{$cls->idclass}}">{{$cls->name}}</option>
+                          @endforeach
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Price</label>
+                      <div class="col-sm-5">
+                        <input type="text" name="price" readonly onchange="passing_value(this.value)" id="price" placeholder="Price" class="form-control">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Start Date</label>
+                  <div class="col-sm-5">
+                    <div class="input-group date">
+                        <input type="text" class="form-control datepicker pull-right" name="start_date" id="date" data-date-format='yyyy-mm-dd' value="{{date('Y-m-d')}}" autocomplete="off">
+                    </div>
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">End Date</label>
+                <div class="col-sm-5">
+                  <div class="input-group date">
+                      <input type="text" class="form-control datepicker pull-right" name="end_date" id="date" data-date-format='yyyy-mm-dd' value="{{date('Y-m-d')}}" autocomplete="off">
+                  </div>
+              </div>
+              </div>
+
                     
                     <div class="form-group row">
                       <label for="name_materi" class="col-sm-1 col-form-label">Images Discounts</label>
@@ -61,3 +105,12 @@
       </div>
     </section>
   </div>
+
+  <script>
+    var cls = {!!json_encode($price)!!};
+    console.log(cls)
+    function passing_value(id){
+      $('#price').val(cls[id])
+      // console.log(cls[id]);
+    }
+</script>

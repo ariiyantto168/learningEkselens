@@ -32,6 +32,8 @@
   <link rel="stylesheet" href="{{ env('ADMINLTE3') }}plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+
   <!-- jQuery -->
 <script src="{{ env('ADMINLTE3') }}plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -224,12 +226,12 @@
                 </a>
               </li>
               {{-- @endif --}}
-              {{-- <li class="nav-item">
-                <a href="{{ url('promostions/class') }}" class="nav-link" id="submenu_class">
+              <li class="nav-item">
+                <a href="{{ url('promostions/kupons') }}" class="nav-link" id="submenu_kupons">
                   <i class="fas fa-school nav-icon"></i>
-                  <p>Class</p>
+                  <p>kupons</p>
                 </a>
-              </li> --}}
+              </li>
             </ul>
           </li>
 
@@ -238,7 +240,7 @@
             <a href="#" class="nav-link" id="menu_trandings">
               <i class="nav-icon fas fa-share-alt-square"></i>
               <p>
-                Tranding
+                Trendings
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -356,6 +358,30 @@
 <script src="{{ env('ADMINLTE3') }}dist/js/demo.js"></script>
 <!-- Select2 -->
 <script src="{{ env('ADMINLTE3')}}plugins/select2/js/select2.full.min.js"></script>
+{{-- date --}}
+<!-- Bootstrap 4 -->
+<script src="{{env('ADMINLTE3')}}plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="{{env('ADMINLTE3')}}plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="{{env('ADMINLTE3')}}plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="{{env('ADMINLTE3')}}plugins/moment/moment.min.js"></script>
+<script src="{{env('ADMINLTE3')}}plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<!-- date-range-picker -->
+<script src="{{env('ADMINLTE3')}}plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="{{env('ADMINLTE3')}}plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{env('ADMINLTE3')}}plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="{{env('ADMINLTE3')}}plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<!-- AdminLTE App -->
+<script src="{{env('ADMINLTE3')}}dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{env('ADMINLTE3')}}dist/js/demo.js"></script>
+<script src="{{env('ADMINLTE3')}}pages/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+
 <script>
   //Initialize Select2 Elements
     $('.select2').select2()
@@ -383,7 +409,12 @@
     $('#menu_{{$menu}}').addClass('active textbox');
     $('#submenu_{{$submenu}}').addClass('active textbox');
 </script>
-
+<script>
+ $('.datepicker').datepicker({
+   autoclose: true,
+   dateFormat: 'yyyy-mm-dd'
+ })
+</script>
 
 </body>
 </html>

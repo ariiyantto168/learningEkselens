@@ -8,6 +8,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DiscountsController;
+use App\Http\Controllers\KuponsController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PopulersController;
 use App\Http\Controllers\CareersControlller;
@@ -36,12 +37,18 @@ Route::post('privileges/module/create-new', [ModuleController::class, 'create_sa
 Route::get('privileges/users/create-new', [UsersController::class, 'addusers'])->middleware('check.auth');
 Route::post('privileges/users/create-new', [UsersController::class, 'addusers_save'])->middleware('check.auth');
 
+// privileges -> create profile
+Route::get('privileges/users/create-profile/{user}', [UsersController::class, 'create_profile'])->middleware('check.auth');
+Route::post('privileges/users/create-profile/{user}/create-profile', [UsersController::class, 'profile_save'])->middleware('check.auth');
+
 // Categories
 Route::get('lecture/categories', [CategoriesController::class, 'index'])->middleware('check.auth');
 Route::get('lecture/categories/create-new', [CategoriesController::class, 'create_page'])->middleware('check.auth');
 Route::post('lecture/categories/create-new', [CategoriesController::class, 'create_save'])->middleware('check.auth');
 Route::get('lecture/categories/update/{categories}', [CategoriesController::class, 'update_page'])->middleware('check.auth');
 Route::post('lecture/categories/update/{categories}', [CategoriesController::class, 'update_save'])->middleware('check.auth');
+Route::delete('lecture/categories/delete/{categories}', [CategoriesController::class, 'delete'])->middleware('check.auth');
+
 
 // class
 Route::get('lecture/class', [ClassController::class, 'index'])->middleware('check.auth')->middleware('check.auth');
@@ -102,3 +109,6 @@ Route::get('promotions/discounts/create-new', [DiscountsController::class, 'crea
 Route::post('promotions/discounts/create-new', [DiscountsController::class, 'create_save'])->middleware('check.auth');
 Route::get('promotions/discounts/update/{discounts}', [DiscountsController::class, 'update_page'])->middleware('check.auth');
 Route::post('promotions/discounts/update/{discounts}', [DiscountsController::class, 'update_save'])->middleware('check.auth');
+
+// Kupons
+Route::get('promotions/kupons', [KuponsController::class, 'index'])->middleware('check.auth');

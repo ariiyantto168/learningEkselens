@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Discounts;
+use App\Models\Classes;
 use Illuminate\Support\Str;
 use Image;
 use File;
@@ -13,7 +14,7 @@ class DiscountsController extends Controller
     public function index()
     {
         $contents = [
-            'discounts' => Discounts::all()
+            'discounts' => Discounts::with('classes')->get(),
         ];
 
         // return $contents;
@@ -34,6 +35,7 @@ class DiscountsController extends Controller
     public function create_page()
     {
         $contents = [
+            'classes' => Classes::all(),
         ];
         $pagecontent = view('contents.promotions.discounts.create', $contents);
 
@@ -64,7 +66,10 @@ class DiscountsController extends Controller
 
         $saveDiscounts = new Discounts;
         $saveDiscounts->name = $request->name;
+        $saveDiscounts->idclass = $request->idclass;
         $saveDiscounts->potongan = $request->potongan;
+        $saveDiscounts->start_date = $request->start_date;
+        $saveDiscounts->end_date = $request->end_date;
         $saveDiscounts->images = $filename;
         $saveDiscounts->slug =  $slug = Str::slug($request->name, '-');
         $saveDiscounts->save();
@@ -95,24 +100,34 @@ class DiscountsController extends Controller
     public function update_save(Request $request,Discounts $discounts)
     {
 
+        $request->validate([
+            'name' => 'required',
+            'images' => 'required | max:200000',
+        ]);
 
-        $filename = NULL;
+        // $filename = NULL;
         if (!empty($discounts->images)) {
-            $path_image = env('CDN_URL').'discounts/'.$discounts->images; 
-            if(File::exists($path_image)){
-                $images = $request->file('images');
-                $filename = Str::random(20).'.'.$images->getClientOriginalExtension();
-                $cdnpath =  env('CDN_URL').'discounts/';
-                $images->move($cdnpath,$filename);
+            if (!empty($request->images)) {
+                $path_image = env('CDN_URL').'discounts/'.$discounts->images; 
+                if(File::exists($path_image)){
+                    $images = $request->file('images');
+                    $filename = Str::random(20).'.'.$images->getClientOriginalExtension();
+                    $cdnpath =  env('CDN_URL').'discounts/';
+                    $images->move($cdnpath,$filename);
+                }
+                File::delete($path_image);
+                
+            }else{
+                $filename = $discounts->images;
             }
-            File::delete($path_image);
         }
+
 
         $saveDiscounts = Discounts::find($discounts->iddiscounts);
         $saveDiscounts->name = $request->name;
         $saveDiscounts->potongan = $request->potongan;
         $saveDiscounts->images = $filename;
-        $saveDiscounts->slug =  $slug = Str::slug($request->name, '-');
+        // $saveDiscounts->slug =  $slug = Str::slug($request->name, '-');
         // return $saveDiscounts;
         $saveDiscounts->save();
         return redirect('promotions/discounts');

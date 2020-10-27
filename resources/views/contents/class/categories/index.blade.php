@@ -50,7 +50,8 @@
                               @endif
                         </td>
                         <td>
-                          <a href="{{ url('lecture/categories/update/'.$categorie->idcategories) }}"><i class="fas fa-edit"></i></a>
+                          <a href="{{ url('lecture/categories/update/'.$categorie->idcategories) }}"><i class="fas fa-edit" title="edit categories"></i></a>
+                          <a style="color:blue;" type="button"><i class="fas fa-trash" title="delete categories" data-toggle="modal" data-target="#myModal"></i></a>
                         </td>
                         </tr>
                         @endforeach
@@ -62,3 +63,29 @@
       </div>
     </section>
   </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Categories</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are You Sure Delete Categories ?
+      </div>
+      <div class="modal-footer">
+        {{-- <form action="{{ url('lecture/categories/delete/'.$categories->idcategories) }}" role="form" method="delete"> --}}
+          @csrf
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Yes</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div> 

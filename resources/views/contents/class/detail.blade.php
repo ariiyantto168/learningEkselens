@@ -139,7 +139,7 @@
                                         <td width="2%">{{ $idhil+1 }}</td>
                                         <td>{{ $hil->namehilights }}</td>
                                         <td>
-                                            <a class="btn btn-xs btn-default" title="View Materies" onclick="view_materies({{ $class->idclass }},{{ $sub->idsubclass }})"><i class="fas fa-eye"></i></a>
+                                            <a class="btn btn-xs btn-default" title="View Materies" onclick="view_materies({{ $class->idclass }},{{ $hil->idhilights }})"><i class="fas fa-eye"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

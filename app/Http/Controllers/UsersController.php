@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Modules;
 use App\Models\Privileges;
+use App\Models\Userprofiles;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Image;
@@ -201,5 +202,63 @@ class UsersController extends Controller
     }
 
     return $result;
+   }
+
+   public function create_profile(User $user)
+   {
+            $users = User::with([
+                'userprofiles',
+                ])
+                ->where('idusers',$user->idusers)
+                ->first();
+        $contents = [
+        'users' => $users,
+        'user' => $user
+        ];
+
+        $pagecontent = view('contents.users.userprofiles.create', $contents);
+
+        //masterpage
+        $pagemain = array(
+        'title' => 'Users profiles',
+        'menu' => 'privileges',
+        'submenu' => 'users',
+        'pagecontent' => $pagecontent,
+        );
+
+        return view('contents.masterpage', $pagemain);
+   }
+
+   public function profile_save(User $user, Request $request)
+   {
+        // $request->validate([
+        //     'firstname' => 'required',
+        //     'lastname' => 'required',
+        //     'role' => 'required',
+        //     'tempatlahir' => 'required',
+        //     'date_born' => 'required',
+        //     'jobrole' => 'required',
+        //     'address' => 'required',
+        // ]);
+
+        // if (empty($request->firstname)) {
+        //     return redirect()->back()->with('status_error', 'firstname is required ');
+        // }
+
+        $userprofile = new Userprofiles;
+        $userprofile->firstname = $request->firstname;
+        $userprofile->idusers = $user->idusers;
+        $userprofile->lastname = $request->lastname;
+        $userprofile->tempatlahir = $request->tempatlahir;
+        $userprofile->date_born = $request->date_born;
+        // $userprofile->tanggallahir = date('Y-m-d H:i:s');
+        $userprofile->jobrole = $request->jobrole;
+        $userprofile->address = $request->address;
+        // return $userprofile;
+        $userprofile->save();
+        return redirect('privileges/users');
+        // return redirect('privileges/users/create-profile/'.$user->idusers)->with('status_success','Successfuly Add User profile');
+        // return redirect('lecture/class/detail/'.$class->idclass)->with('status_success','Successfuly Add Subclass Lanjutkan Membuat Materi Kelas');
+
    }
 }

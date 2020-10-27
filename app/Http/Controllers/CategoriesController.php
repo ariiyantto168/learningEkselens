@@ -125,4 +125,18 @@ class CategoriesController extends Controller
             return redirect('lecture/categories');
             // return redirect('categories')->with('status_success','Update categories');
         }
+    
+    public function delete(Categories $categories, Request $request)
+    {
+        $deleteCategories = Categories::find($categories->idcategories);
+        if (!empty($categories->images)) {
+            $path_image = env('CDN_URL').'image/'.$categories->images; 
+            if(File::exists($path_iamge)){
+                File::delete($path_image); 
+            }
+        }
+        // return $deleteCategories;
+        $deleteCategories->delete();
+        return redirect('lecture/categories');
+    }
 }

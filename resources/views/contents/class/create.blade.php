@@ -61,16 +61,16 @@
                             <input type="text" class="form-control" name="name" placeholder="Name">
                           </div>
                         </div>
-                        {{-- <div class="form-group row">
+                        <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Harga</label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" name="price" placeholder="Harga Kelas">
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="name_materi" class="col-sm-2 col-form-label">Durasi Kelas</label>
+                          <label for="name_materi" class="col-sm-2 col-form-label">Durasi Kelas (Menit)</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="duration" placeholder="Durasi Kelas">
+                            <input type="number" class="form-control" name="duration" placeholder="Durasi Kelas">
                           </div>
                         </div>
                         <div class="form-group row">
@@ -90,7 +90,7 @@
                           <div class="col-sm-10">
                             <input type="number" class="form-control" name="rating" placeholder="Rating">
                           </div>
-                        </div> --}}
+                        </div>
                         <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Tutor</label>
                           <div class="col-sm-10">
@@ -103,13 +103,13 @@
                             <textarea class="form-control" name="description"  cols="30" rows="10"></textarea>
                           </div>
                         </div>
-                        {{-- <div class="form-group row">
+                        <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Images Instructor</label>
                           <div class="col-sm-10">
                             <input type="file" class="form-control-file" name="imagesinstructor">
                             <small class="help-block">Extension must jpg, jpeg, png</small>
                           </div>
-                        </div> --}}
+                        </div>
                         <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Images Kelas</label>
                           <div class="col-sm-10">
