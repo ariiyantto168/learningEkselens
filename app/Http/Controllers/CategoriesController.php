@@ -128,8 +128,10 @@ class CategoriesController extends Controller
     
     public function delete(Categories $categories, Request $request)
     {
-        $deleteCategories = Categories::find($categories->idcategories);
+        // return $request->all();
+        $deleteCategories = Categories::find($request->idcategories);
         if (!empty($categories->images)) {
+            return $path_iamge;
             $path_image = env('CDN_URL').'image/'.$categories->images; 
             if(File::exists($path_iamge)){
                 File::delete($path_image); 

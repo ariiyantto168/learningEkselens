@@ -51,7 +51,7 @@
                         </td>
                         <td>
                           <a href="{{ url('lecture/categories/update/'.$categorie->idcategories) }}"><i class="fas fa-edit" title="edit categories"></i></a>
-                          <a style="color:blue;" type="button"><i class="fas fa-trash" title="delete categories" data-toggle="modal" data-target="#myModal"></i></a>
+                          <a style="color:blue;" type="button"><i class="fas fa-trash"  onclick="btn_delete({{$categorie->idcategories}})" title="delete categories" data-toggle="modal" data-target="#myModal"></i></a>
                         </td>
                         </tr>
                         @endforeach
@@ -75,17 +75,24 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form action="{{ url('lecture/categories/delete') }}" role="form" method="post">
+        @csrf
       <div class="modal-body">
         Are You Sure Delete Categories ?
+        <input type="text" id="idcategories" name="idcategories">
       </div>
       <div class="modal-footer">
-        {{-- <form action="{{ url('lecture/categories/delete/'.$categories->idcategories) }}" role="form" method="delete"> --}}
-          @csrf
         <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
         <button type="submit" class="btn btn-primary">Yes</button>
-        </form>
       </div>
+    </form>
     </div>
 
   </div>
 </div> 
+
+<script>
+  function btn_delete(idcategories){
+    $('#idcategories').val(idcategories)
+  }
+</script>

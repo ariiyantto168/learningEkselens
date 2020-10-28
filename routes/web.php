@@ -47,7 +47,7 @@ Route::get('lecture/categories/create-new', [CategoriesController::class, 'creat
 Route::post('lecture/categories/create-new', [CategoriesController::class, 'create_save'])->middleware('check.auth');
 Route::get('lecture/categories/update/{categories}', [CategoriesController::class, 'update_page'])->middleware('check.auth');
 Route::post('lecture/categories/update/{categories}', [CategoriesController::class, 'update_save'])->middleware('check.auth');
-Route::delete('lecture/categories/delete/{categories}', [CategoriesController::class, 'delete'])->middleware('check.auth');
+Route::post('lecture/categories/delete', [CategoriesController::class, 'delete'])->middleware('check.auth');
 
 
 // class
