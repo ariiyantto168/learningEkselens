@@ -32,7 +32,8 @@
 
   <script>
   function remove_materies(idclass,idmateries){
-    var token = '{{ csrf_token() }}';
+    if (confirm('Are you sure you want to delete this ?')) {
+      var token = '{{ csrf_token() }}';
     $.ajax(
     {
         url: "{{url('lecture/class/detail')}}/"+idclass+'/delete-materies/'+idmateries,
@@ -50,7 +51,9 @@
         error: function(xhr) {
         console.log(xhr.responseText); 
       }
-    }); 
-    
+    });
+    }else{
+      console.log('cancel');
+    } 
   }    
   </script>

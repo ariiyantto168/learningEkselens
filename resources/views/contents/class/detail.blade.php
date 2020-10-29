@@ -103,6 +103,7 @@
                                               <td>
                                                   <a class="open-mdl btn btn-xs btn-default" title="Add Materies" data-toggle="modal" data-target="#materies" data-id="{{ $sub->idsubclass }}" title="Add Materies"><i class="fas fa-plus"></i></a>
                                                   <a class="btn btn-xs btn-default" title="View Materies" onclick="view_materies({{ $class->idclass }},{{ $sub->idsubclass }})"><i class="fas fa-eye"></i></a>
+                                                  <a style="color:black;" href="{{ url('lecture/subclass/update/'.$sub->idsubclass) }}"><i class="fas fa-edit" title="edit subclass"></i></a>
                                               </td>
                                           </tr>
                                       @endforeach
@@ -139,7 +140,7 @@
                                         <td width="2%">{{ $idhil+1 }}</td>
                                         <td>{{ $hil->namehilights }}</td>
                                         <td>
-                                            <a class="btn btn-xs btn-default" title="View Materies" onclick="view_materies({{ $class->idclass }},{{ $hil->idhilights }})"><i class="fas fa-eye"></i></a>
+                                            <a style="color:black;" href="{{ url('lecture/hilights/update/'.$hil->idhilights) }}"><i class="fas fa-edit" title="edit hilights"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

@@ -17,7 +17,7 @@ class ClassController extends Controller
     public function index()
     {
         $contents = [
-            'classes' => Classes::all(),
+            'classes' => Classes::with(['categories'])->get(),
         ];
 
         // return $contents;
@@ -55,44 +55,6 @@ class ClassController extends Controller
 
     public function create_save(Request $request)
     {
-        // // return $request->all();
-        // $request->validate([
-        //     'name' => 'required',
-        //     'tutor' => 'required',
-        //     'description' => 'required',
-        //     'images' => 'required|file|mimes:jpg,jpeg,png|max:50000',
-        //     'demo' => 'required|file|mimes:mp4',
-        // ]);
-
-        // $getsize = filesize($request->file('demo'));
-        // if ($getsize < 31500000) {
-        //     return redirect()->back()->with('status_error','Demo video is too large');
-        //     // 'validate';
-        // }
-
-        // // return $getsize;
-        // if($request->hasFile('images')){
-        //     $file = $request->file('images');
-        //     $filename = time()."_".$file->getClientOriginalName();
-        //     $destinasi = env('CDN_URL').'image/'; 
-        //     $file->move($destinasi, $filename);
-        // }
-
-        // // if($request->hasFile('imagesinstructor')){
-        // //     $fileinstructor = $request->file('imagesinstructor');
-        // //     $nameinstructor = time()."_".$fileinstructor->getClientOriginalName();
-        // //     $destinasi = env('CDN_URL').'instructor/'; 
-        // //     $fileinstructor->move($destinasi, $nameinstructor);
-        // // }
-
-        // if($request->hasFile('demo')){
-        //     $demo = $request->file('demo');
-        //     $demo_file = time()."_".$demo->getClientOriginalName();
-        //     $destinasi = env('CDN_URL').'demo/'; 
-        //     $demo->move($destinasi, $demo_file);
-        // }
-        // // $save_class->imagesinstructor = $nameinstructor;
-
 
         $request->validate([
             'name' => 'required',
@@ -314,4 +276,85 @@ class ClassController extends Controller
         return response()->json(array('materies'=> $materies), 200);
 
     }
+
+    // Edit Subclass
+    public function update_subclass(SubClass $subclass)
+    {
+        $contents = [
+            'subclass' => Subclass::find($subclass->idsubclass)
+        ];
+
+        // return $contents;
+
+        $pagecontent = view('contents.class.subclass.update',$contents);
+
+        // masterpage
+        $pagemain = array(
+            'title' => 'Subclass',
+            'menu' => 'lecture',
+            'submenu' => 'class',
+            'pagecontent' => $pagecontent
+        );
+
+        return view('contents.masterpage', $pagemain);
+    }
+    // Close Edit Subclass
+
+    // update save subclass
+    public function update_subclass_save(SubClass $subclass, Request $request)
+    {
+        $save_subclass = Subclass::find($subclass->idsubclass);
+        $save_subclass->idclass = $save_subclass->idclass;
+        $save_subclass->headmateri = $request->headmateri;
+        $save_subclass->save();
+        // return $save_subclass;
+        return redirect('lecture/class/detail/'.$subclass->idclass)->with('status_success','Successfuly Updated Subclass');
+    }
+    // close update save subclass
+
+
+    // Edit Subclass
+    public function update_hilights(Hilights $hilights)
+    {
+        $contents = [
+            'hilights' => Hilights::find($hilights->idhilights)
+        ];
+
+        // return $contents;
+
+        $pagecontent = view('contents.class.hilights.update',$contents);
+
+        // masterpage
+        $pagemain = array(
+            'title' => 'Updated Hilights',
+            'menu' => 'lecture',
+            'submenu' => 'class',
+            'pagecontent' => $pagecontent
+        );
+
+        return view('contents.masterpage', $pagemain);
+    }
+    // Close Edit Subclass
+
+        // update save subclass
+        public function update_hilights_save(Hilights $hilights, Request $request)
+        {
+            $updateHilights = Hilights::find($hilights->idhilights);
+            $updateHilights->idclass = $updateHilights->idclass;
+            $updateHilights->namehilights = $request->namehilights;
+            $updateHilights->save();
+            // return $save_subclass;
+            return redirect('lecture/class/detail/'.$hilights->idclass)->with('status_success','Successfuly Updated HIlights');
+        }
+        // close update save subclass
+
+    // delete subclass
+    public function delete_subclass(SubClass $subclass)
+    {
+        $deleteSubclass = Subclass::find($subclass->idsubclass);
+
+        $deleteSubclass->delete();
+        return redirect('lecture/class/detail/'.$subclass->idclass)->with('status_success','Successfuly Delete');
+    }
+
 }

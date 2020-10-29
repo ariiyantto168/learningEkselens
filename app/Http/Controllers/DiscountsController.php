@@ -60,7 +60,7 @@ class DiscountsController extends Controller
         if($request->has('images')){
             $images = $request->file('images');
             $filename = Str::random(20).'.'.$images->getClientOriginalExtension();
-            $cdnpath =  env('CDN_URL').'discounts/';
+            $cdnpath =  env('CDN_URL').'promotions/discounts/';
             $images->move($cdnpath,$filename);
         }
 
@@ -79,6 +79,7 @@ class DiscountsController extends Controller
     public function update_page(Discounts $discounts)
     {
         $contents = [
+            'classes' => Classes::all(),
             'discounts' => Discounts::find($discounts->iddiscounts)
         ];
 
@@ -105,14 +106,13 @@ class DiscountsController extends Controller
             'images' => 'required | max:200000',
         ]);
 
-        // $filename = NULL;
         if (!empty($discounts->images)) {
             if (!empty($request->images)) {
-                $path_image = env('CDN_URL').'discounts/'.$discounts->images; 
+                $path_image = env('CDN_URL').'promotions/discounts/'.$discounts->images; 
                 if(File::exists($path_image)){
                     $images = $request->file('images');
                     $filename = Str::random(20).'.'.$images->getClientOriginalExtension();
-                    $cdnpath =  env('CDN_URL').'discounts/';
+                    $cdnpath =  env('CDN_URL').'promotions/discounts/';
                     $images->move($cdnpath,$filename);
                 }
                 File::delete($path_image);
@@ -125,10 +125,10 @@ class DiscountsController extends Controller
 
         $saveDiscounts = Discounts::find($discounts->iddiscounts);
         $saveDiscounts->name = $request->name;
+        $saveDiscounts->idclass = $request->idclass;
         $saveDiscounts->potongan = $request->potongan;
         $saveDiscounts->images = $filename;
-        // $saveDiscounts->slug =  $slug = Str::slug($request->name, '-');
-        // return $saveDiscounts;
+        $saveDiscounts->slug =  $slug = Str::slug($request->name, '-');
         $saveDiscounts->save();
         return redirect('promotions/discounts');
     }

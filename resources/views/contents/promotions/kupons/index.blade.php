@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Discounts</h1>
+            <h1 class="m-0 text-dark">Kupons</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item active">Promotions</li>
-              <li class="breadcrumb-item active"><a href="{{ url('promotions/discounts') }}">Discounts</a></li>
+              <li class="breadcrumb-item active"><a href="{{ url('promotions/kupons') }}">Kupons</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -23,7 +23,7 @@
         <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Index</h3>
-                <div class="float-right"><i class="fas fa-plus size:2x"></i> <a href="{{ url('promotions/discounts/create-new') }}">Create New</a></div>
+                <div class="float-right"><i class="fas fa-plus size:2x"></i> <a href="{{ url('promotions/kupons/create-new') }}">Create New</a></div>
 
             </div>
             <div class="card-body">
@@ -32,27 +32,27 @@
                         <tr>
                           <th>No</th>
                           <th>Name</th>
-                          <th>Discounts Price</th>
+                          <th>Kupon Price</th>
                           <th>Images</th>
                           <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                      @foreach ($discounts as $idx => $dis)
+                      @foreach ($kupons as $idx => $kup)
                       <tr>
                           <td>{{ $idx+1 }}</td>
-                          <td>{{ $dis->name }}</td>
-                          <td>{{ $dis->potongan }}</td>
+                          <td>{{ $kup->name }}</td>
+                          <td>{{ $kup->potongan }}</td>
                           <td>
                           {{-- images dapet dr model function --}}
-                            @if (is_null($dis->images))
+                            @if (is_null($kup->images))
                               <label> - </label>
                             @else
-                              <img class="img-rounded zoom" src="{{env('PATH_URL')}}promotions/discounts/{{$dis->images}}" width="50">
+                              <img class="img-rounded zoom" src="{{env('PATH_URL')}}promotions/kupons/{{$kup->images}}" width="50">
                             @endif
                       </td>
                       <td>
-                        <a href="{{ url('promotions/discounts/update/'.$dis->iddiscounts) }}"><i class="fas fa-edit" title="Update Discounts"></i></a>
+                        <a href="{{ url('promotions/kupons/update/'.$kup->idkupons) }}"><i class="fas fa-edit" title="Update Kupons"></i></a>
                       </td>
                       </tr>
                       @endforeach

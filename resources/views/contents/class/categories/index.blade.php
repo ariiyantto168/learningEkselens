@@ -51,7 +51,6 @@
                         </td>
                         <td>
                           <a href="{{ url('lecture/categories/update/'.$categorie->idcategories) }}"><i class="fas fa-edit" title="edit categories"></i></a>
-                          <a style="color:blue;" type="button"><i class="fas fa-trash"  onclick="btn_delete({{$categorie->idcategories}})" title="delete categories" data-toggle="modal" data-target="#myModal"></i></a>
                         </td>
                         </tr>
                         @endforeach
@@ -64,35 +63,16 @@
     </section>
   </div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Categories</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="{{ url('lecture/categories/delete') }}" role="form" method="post">
-        @csrf
-      <div class="modal-body">
-        Are You Sure Delete Categories ?
-        <input type="text" id="idcategories" name="idcategories">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary">Yes</button>
-      </div>
-    </form>
-    </div>
-
-  </div>
-</div> 
-
-<script>
+{{-- <script>
   function btn_delete(idcategories){
     $('#idcategories').val(idcategories)
   }
-</script>
+</script> --}}
+
+{{-- <script>
+
+  function btn_delete(idcategories){
+    
+  }
+
+</script> --}}

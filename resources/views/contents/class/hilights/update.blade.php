@@ -4,13 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Categories</h1>
+            <h1 class="m-0 text-dark">Update Hilights</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active">Kelas</li>
-              <li class="breadcrumb-item acti   ve"><a href="{{ url('lecture/categories') }}">Kategori</a></li>
-              <li class="breadcrumb-item active">Create-new</li>
+              <li class="breadcrumb-item active">Hilights</li>
+              <li class="breadcrumb-item active">Update</li>
 
             </ol>
           </div><!-- /.col -->      
@@ -27,24 +26,15 @@
                 <h3 class="card-title">Buat</h3>
             </div>
             <div class="card-body">
-              @include('contents.allmessage')
-                <form role="form" class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url('lecture/categories/create-new') }}">  
-                  @csrf
+                <form role="form" class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url('lecture/hilights/update/'.$hilights->idhilights) }}">
+                    @csrf
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama</label>
+                      <label for="exampleInputEmail1">Name Hilights</label>
                         <div class="col-sm-5">
-                          <input type="text" name="name" placeholder="Name" class="form-control">
+                            <input type="text" name="namehilights" value="{{$hilights->namehilights}}" class="form-control">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Gambar Kategori</label>
-                      <div class="col-sm-6">
-                      <input type="file" name="images" class="form-control">
-                      <small class="text-danger">size image max 5 mb</small>
-                      </div>
-                  </div>
-                        
                     <div class="card-footer">
                       <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

@@ -31,6 +31,7 @@ class CategoriesController extends Controller
         return view('contents.masterpage', $pagemain);
     }
 
+
     public function create_page()
     {
         $content = [
@@ -69,7 +70,7 @@ class CategoriesController extends Controller
         $saveCategories->slug =  $slug = Str::slug($request->name, '-');
         $saveCategories->images = $filename;
         $saveCategories->save();
-        return redirect('lecture/categories');
+        return redirect('lecture/categories')->with('status_success','Successfuly Add Categories');
     }
 
     public function update_page(Categories $categories)
@@ -126,19 +127,18 @@ class CategoriesController extends Controller
             // return redirect('categories')->with('status_success','Update categories');
         }
     
-    public function delete(Categories $categories, Request $request)
+    public function delete(Categories $categories)
     {
-        // return $request->all();
-        $deleteCategories = Categories::find($request->idcategories);
-        if (!empty($categories->images)) {
-            return $path_iamge;
-            $path_image = env('CDN_URL').'image/'.$categories->images; 
-            if(File::exists($path_iamge)){
-                File::delete($path_image); 
-            }
-        }
-        // return $deleteCategories;
-        $deleteCategories->delete();
-        return redirect('lecture/categories');
+       // return $request->all();
+    //    $deleteCategories = Categories::where('idcategories', $idcategories)->delete();
+        $deleteCategories = Categories::find($categories->idcategories);
+       if (!empty($categories->images)) {
+           $path_image = env('CDN_URL').'image/'.$categories->images; 
+           if(File::exists($path_image)){
+               File::delete($path_image); 
+           }
+       }
+       $deleteCategories->delete();
+       return redirect('lecture/categories')->with('status_success','Successfuly Delete Categories');
     }
 }

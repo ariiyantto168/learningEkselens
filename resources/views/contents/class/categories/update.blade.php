@@ -10,8 +10,10 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item active">Kelas</li>
               <li class="breadcrumb-item acti   ve"><a href="{{ url('lecture/categories') }}">Kategori</a></li>
-              <li class="breadcrumb-item active">Create-new</li>
-
+              <li class="breadcrumb-item active">Update</li>
+              <li class="breadcrumb-item active">
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#myModal">Delete</button>
+              </li>
             </ol>
           </div><!-- /.col -->      
         </div><!-- /.row -->
@@ -22,6 +24,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        @include('contents.allmessage')
         <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Buat</h3>
@@ -55,3 +58,29 @@
       </div>
     </section>
   </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Categories</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are You Sure Delete Categories ?
+      </div>
+      <div class="modal-footer">
+          <form action="{{ url('lecture/categories/delete/'.$categories->idcategories) }}" role="form" method="post">
+            @method('delete')
+            @csrf
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Yes</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div> 

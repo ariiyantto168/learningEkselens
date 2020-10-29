@@ -42,13 +42,7 @@
                       <select class="form-control" id="idclass" name="idclass" onchange="passing_value(this.value)">
                         <option>-- select Kelas -- </option>
                         @php
-                          $instructor = [];
-                          $roleins = [];
-                          $duration = [];
-                          $tutor = [];
                           $price = [];
-                          $rating = []; 
-                          $image = []; 
                         @endphp
                           @foreach ($classes as $cls)
                            <option value="{{$cls->idclass}}" @if ($cls->idclass == $newclass->idclass) 

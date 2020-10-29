@@ -47,7 +47,7 @@ Route::get('lecture/categories/create-new', [CategoriesController::class, 'creat
 Route::post('lecture/categories/create-new', [CategoriesController::class, 'create_save'])->middleware('check.auth');
 Route::get('lecture/categories/update/{categories}', [CategoriesController::class, 'update_page'])->middleware('check.auth');
 Route::post('lecture/categories/update/{categories}', [CategoriesController::class, 'update_save'])->middleware('check.auth');
-Route::post('lecture/categories/delete', [CategoriesController::class, 'delete'])->middleware('check.auth');
+Route::delete('lecture/categories/delete/{categories}', [CategoriesController::class, 'delete'])->middleware('check.auth');
 
 
 // class
@@ -55,14 +55,23 @@ Route::get('lecture/class', [ClassController::class, 'index'])->middleware('chec
 Route::get('lecture/class/create-new', [ClassController::class, 'create_page'])->middleware('check.auth');
 Route::post('lecture/class/create-new', [ClassController::class, 'create_save'])->middleware('check.auth');
 Route::get('lecture/class/detail/{class}', [ClassController::class, 'class_detail'])->middleware('check.auth');
-// subclass
-Route::post('lecture/class/detail/{class}/create-subclass', [ClassController::class, 'addsubclass'])->middleware('check.auth');
-// hilights
-Route::post('lecture/class/detail/{class}/create-hilights', [ClassController::class, 'addhilights'])->middleware('check.auth');
+
 // materies
 Route::post('lecture/class/detail/{class}/create-materies', [ClassController::class, 'addmateries'])->middleware('check.auth');
 Route::get('lecture/class/detail/{class}/view-materies/{subcls}', [ClassController::class, 'viewmateries'])->middleware('check.auth');
 Route::delete('lecture/class/detail/{class}/delete-materies/{materies}', [ClassController::class, 'delete_materies'])->middleware('check.auth');
+
+// subclass
+Route::post('lecture/class/detail/{class}/create-subclass', [ClassController::class, 'addsubclass'])->middleware('check.auth');
+Route::get('lecture/subclass/update/{subclass}', [ClassController::class, 'update_subclass'])->middleware('check.auth');
+Route::post('lecture/subclass/update/{subclass}', [ClassController::class, 'update_subclass_save'])->middleware('check.auth');
+Route::delete('lecture/subclass/delete/{subclass}', [ClassController::class, 'delete_subclass'])->middleware('check.auth');
+
+
+// hilights
+Route::post('lecture/class/detail/{class}/create-hilights', [ClassController::class, 'addhilights'])->middleware('check.auth');
+Route::get('lecture/hilights/update/{hilights}', [ClassController::class, 'update_hilights'])->middleware('check.auth');
+Route::post('lecture/hilights/update/{hilights}', [ClassController::class, 'update_hilights_save'])->middleware('check.auth');
 
 // Route::get('lecture/class/update/{classes}', [ClassController::class, 'update_page'])->middleware('check.auth');
 // Route::get('lecture/class/view/{classes}', [ClassController::class, 'view_page'])->middleware('check.auth');
@@ -112,3 +121,7 @@ Route::post('promotions/discounts/update/{discounts}', [DiscountsController::cla
 
 // Kupons
 Route::get('promotions/kupons', [KuponsController::class, 'index'])->middleware('check.auth');
+Route::get('promotions/kupons/create-new', [KuponsController::class, 'create_page'])->middleware('check.auth');
+Route::post('promotions/kupons/create-new', [KuponsController::class, 'create_save'])->middleware('check.auth');
+Route::get('promotions/kupons/update/{kupons}', [KuponsController::class, 'update_page'])->middleware('check.auth');
+Route::post('promotions/kupons/update/{kupons}', [KuponsController::class, 'update_save'])->middleware('check.auth');

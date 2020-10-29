@@ -227,8 +227,8 @@
               </li>
               {{-- @endif --}}
               <li class="nav-item">
-                <a href="{{ url('promostions/kupons') }}" class="nav-link" id="submenu_kupons">
-                  <i class="fas fa-school nav-icon"></i>
+                <a href="{{ url('promotions/kupons') }}" class="nav-link" id="submenu_kupons">
+                  <i class="fas fa-money-check-alt nav-icon"></i>
                   <p>kupons</p>
                 </a>
               </li>
