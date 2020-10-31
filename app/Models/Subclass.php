@@ -51,7 +51,5 @@ class Subclass extends Model
     {
         return $this->hasMany('App\Models\Materies','idsubclass');
     }
-   
-    
     
 }

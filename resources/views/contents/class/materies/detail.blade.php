@@ -32,7 +32,7 @@
 
   <script>
   function remove_materies(idclass,idmateries){
-    if (confirm('Are you sure you want to delete this ?')) {
+
       var token = '{{ csrf_token() }}';
     $.ajax(
     {
@@ -52,8 +52,5 @@
         console.log(xhr.responseText); 
       }
     });
-    }else{
-      console.log('cancel');
-    } 
   }    
   </script>

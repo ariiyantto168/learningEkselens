@@ -351,9 +351,24 @@ class ClassController extends Controller
     // delete subclass
     public function delete_subclass(SubClass $subclass)
     {
-        $deleteSubclass = Subclass::find($subclass->idsubclass);
+        // $deleteSubclass = Subclass::find($subclass->idsubclass);
+        
 
+        // $deleteSubclass->delete();
+        // return redirect('lecture/class/detail/'.$subclass->idclass)->with('status_success','Successfuly Delete');
+
+        $deleteSubclass = Subclass::with(['materies'])
+                          ->where('idsubclass',$subclass->idsubclass)
+                          ->first();
+        // return $deleteSubclass;
+        $data_subclass = [];
+        foreach($deleteSubclass->materies as $materi)
+        {
+            $data_subclass = $materi->idmateries;
+        }
+        $deleteSubclass->materies()->detach($data_subclass);
         $deleteSubclass->delete();
+        return $deleteSubclass;
         return redirect('lecture/class/detail/'.$subclass->idclass)->with('status_success','Successfuly Delete');
     }
 
