@@ -33,20 +33,20 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Nama</label>
                         <div class="col-sm-5">
-                          <input type="text" name="name" placeholder="Name" class="form-control">
+                          <input type="text" name="name" placeholder="Name" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputEmail1">Gambar Kategori</label>
                       <div class="col-sm-6">
-                      <input type="file" name="images" class="form-control">
+                      <input type="file" name="images" id="fileUpload" class="form-control" accept="image/svg,image/jpeg" required>
                       <small class="text-danger">size image max 5 mb</small>
                       </div>
                   </div>
                         
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" class="btn btn-primary" value="upload">Submit</button>
                     </div>
                 </form>
             </div>
@@ -55,3 +55,23 @@
       </div>
     </section>
   </div>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    maxFileSize = 10 * 1024 * 1024 / 2; // 10 mb
+
+    $('#fileUpload').change(function() {
+      fileSize = this.files[0].size;
+
+      if (fileSize > maxFileSize) {
+        this.setCustomValidity("You can upload only files under 5 MB");
+        this.reportValidity();
+      } else {
+        this.setCustomValidity("");
+      }
+    });
+  });
+
+
+</script>

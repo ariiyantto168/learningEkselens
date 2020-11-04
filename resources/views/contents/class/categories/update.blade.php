@@ -42,7 +42,7 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Gambar Kategori</label>
                       <div class="col-sm-5">
-                      <input type="file" name="images" class="form-control">
+                      <input type="file" id="images" name="images" class="form-control">
                       <br>
                       <img class="img-rounded zoom" id="img-upload" src="{{env('PATH_URL')}}image/{{$categories->images}}" width="100">
                     </div>
@@ -84,3 +84,21 @@
 
   </div>
 </div> 
+
+{{-- batasan images --}}
+<script type="text/javascript">
+  $(document).ready(function() {
+    maxFileSize = 10 * 1024 * 1024 / 2; // 5 mb
+
+    $('#images').change(function() {
+      fileSize = this accept="image/svg,image/jpeg".files[0].size;
+
+      if (fileSize > maxFileSize) {
+        this.setCustomValidity("You can upload only files under 5 MB");
+        this.reportValidity();
+      } else {
+        this.setCustomValidity("");
+      }
+    });
+  });
+</script>
