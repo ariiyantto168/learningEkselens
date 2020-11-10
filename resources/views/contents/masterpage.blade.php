@@ -102,13 +102,13 @@
   {{-- <aside class="main-sidebar sidebar-dark-primary elevation-4"> --}}
   <aside class="main-sidebar blue elevation-4" style="background-color: #152ca3 !important">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link " style="color: #ffffff"> 
+    {{-- <a href="index3.html" class="brand-link " style="color: #ffffff"> 
       <img src="{{ env('ADMINLTE3') }}dist/img/ICON.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text" >
       <img src="{{ env('ADMINLTE3') }}dist/img/White.png" alt="" style="width: 50%;height: auto; object-fit: cover">
       </span>
-    </a>
+    </a> --}}
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -118,7 +118,7 @@
           <img src="{{ env('ADMINLTE3') }}dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block " style="text-decoration: none;cursor: none;color: #ffffff">Alexander Pierce</a>
+          <a href="#" class="d-block " style="text-decoration: none;cursor: none;color: #ffffff">Super Admin</a>
         </div>
       </div>
 
@@ -142,7 +142,7 @@
             <a href="#" class="nav-link" id="menu_privileges">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
-                Hak Akses
+                Access  Application
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -158,7 +158,7 @@
               <li class="nav-item">
                 <a href="{{ url('privileges/module') }}" class="nav-link" id="submenu_module">
                   <i class="far fa-file nav-icon"></i>
-                  <p>Tambah modul aplikasi</p>
+                  <p>Add Modul Application</p>
                 </a>
               </li>
             </ul>
@@ -168,7 +168,7 @@
             <a href="#" class="nav-link" id="menu_lecture">
               <i class="nav-icon fas fa-building"></i>
               <p>
-                Materi Kelas
+                Materi Class
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -177,20 +177,20 @@
               <li class="nav-item">
                 <a href="{{ url('lecture/categories') }}" class="nav-link" id="submenu_categories">
                   <i class="fas fa-cubes nav-icon"></i>
-                  <p>Kategori</p>
+                  <p>Categories</p>
                 </a>
               </li>
               {{-- @endif --}}
               <li class="nav-item">
                 <a href="{{ url('lecture/class') }}" class="nav-link" id="submenu_class">
                   <i class="fas fa-school nav-icon"></i>
-                  <p>Kelas</p>
+                  <p>Class</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ url('lecture/comments') }}" class="nav-link" id="submenu_comments">
                   <i class="fas fa-comments nav-icon"></i>
-                  <p>Komen</p>
+                  <p>Comment</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -213,7 +213,7 @@
             <a href="#" class="nav-link" id="menu_promotions">
               <i class="nav-icon fas fa-ticket-alt"></i>
               <p>
-                Promosi
+                Promotion
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -222,7 +222,7 @@
               <li class="nav-item">
                 <a href="{{ url('promotions/discounts') }}" class="nav-link" id="submenu_discounts">
                   <i class="fas fa-tags nav-icon"></i>
-                  <p>Diskon</p>
+                  <p>Discounts</p>
                 </a>
               </li>
               {{-- @endif --}}
@@ -249,20 +249,20 @@
               <li class="nav-item">
                 <a href="{{ url('trandings/populers') }}" class="nav-link" id="submenu_populers">
                   <i class="fas fa-project-diagram nav-icon"></i>
-                  <p>Kelas Populer</p>
+                  <p>Class Populer</p>
                 </a>
               </li>
               {{-- @endif --}}
               <li class="nav-item">
                 <a href="{{ url('trandings/careers') }}" class="nav-link" id="submenu_careers">
                   <i class="fas fa-briefcase nav-icon"></i>
-                  <p>Karir Ready program</p>
+                  <p>Career Ready Program</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ url('trandings/newclass') }}" class="nav-link" id="submenu_class">
                   <i class="fas fa-chalkboard-teacher nav-icon"></i>
-                  <p>Kelas Terbaru</p>
+                  <p>New Class</p>
                 </a>
               </li>
             </ul>
@@ -293,12 +293,6 @@
       <b>Version</b> 3.0.5
     </div>
   </footer>  --}}
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 

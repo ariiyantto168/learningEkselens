@@ -61,7 +61,7 @@ class PopulersController extends Controller
 
         $request->validate([
             'name' => 'required',
-            // 'images' => 'required | max:200000',
+            'idclass' => 'required',
         ]);
 
 
@@ -69,7 +69,7 @@ class PopulersController extends Controller
         $savePopulers->name = $request->name;
         $savePopulers->idclass = $request->idclass;
         $savePopulers->save();
-        return redirect('trandings/populers');
+        return redirect('trandings/populers')->with('status_success','Successfuly Add Populers');
     }
 
     public function update_page(Populers $populers)
@@ -107,7 +107,14 @@ class PopulersController extends Controller
             $updatePopulers->name = $request->name;
             $updatePopulers->idclass = $request->idclass;
             $updatePopulers->save();
-            return redirect('trandings/populers');
+            return redirect('trandings/populers')->with('status_success','Successfuly Update Populers');
             // return redirect('categories')->with('status_success','Update categories');
+    }
+
+    public function delete(Populers $populers)
+    {
+       $deletePop = Populers::find($populers->idpopulers);
+       $deletePop->delete();
+       return redirect('trandings/populers')->with('status_success','Successfuly Delete Populers');
     }
 }

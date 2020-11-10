@@ -32,15 +32,15 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Name</label>
                         <div class="col-sm-5">
-                            <input type="text" name="name" value="{{$newclass->name}}" class="form-control">
+                            <input type="text" name="name" value="{{$newclass->name}}" class="form-control" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
                       <label>Kelas</label>
                       <div class="col-sm-5">
-                      <select class="form-control" id="idclass" name="idclass" onchange="passing_value(this.value)">
-                        <option>-- select Kelas -- </option>
+                      <select class="form-control" id="idclass" name="idclass" onchange="passing_value(this.value)" required>
+                        <option value="">-- select Kelas -- </option>
                         @php
                           $price = [];
                         @endphp

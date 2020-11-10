@@ -35,14 +35,14 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Nama</label>
                         <div class="col-sm-5">
-                            <input type="text" name="name" value="{{$categories->name}}" class="form-control">
+                            <input type="text" name="name" value="{{$categories->name}}" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputEmail1">Gambar Kategori</label>
                       <div class="col-sm-5">
-                      <input type="file" id="images" name="images" class="form-control">
+                      <input type="file" id="images" name="images" accept="image/svg,image/jpeg" class="form-control" required>
                       <br>
                       <img class="img-rounded zoom" id="img-upload" src="{{env('PATH_URL')}}image/{{$categories->images}}" width="100">
                     </div>
@@ -85,20 +85,20 @@
   </div>
 </div> 
 
-{{-- batasan images --}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    maxFileSize = 10 * 1024 * 1024 / 2; // 5 mb
-
-    $('#images').change(function() {
-      fileSize = this accept="image/svg,image/jpeg".files[0].size;
-
-      if (fileSize > maxFileSize) {
-        this.setCustomValidity("You can upload only files under 5 MB");
-        this.reportValidity();
-      } else {
-        this.setCustomValidity("");
-      }
+  {{-- batasan size images --}}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      maxFileSize = 10 * 1024 * 1024 / 2; // 5 mb
+  
+      $('#images').change(function() {
+        fileSize = this.files[0].size;
+  
+        if (fileSize > maxFileSize) {
+          this.setCustomValidity("You can upload only files under 5 MB");
+          this.reportValidity();
+        } else {
+          this.setCustomValidity("");
+        }
+      });
     });
-  });
-</script>
+  </script>

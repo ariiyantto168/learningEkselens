@@ -5,7 +5,6 @@ use App\Models\Categories;
 use Illuminate\Support\Str;
 use Image;
 use File;
-
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller

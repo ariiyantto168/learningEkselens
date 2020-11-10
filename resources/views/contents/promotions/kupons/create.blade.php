@@ -32,21 +32,21 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Name</label>
                         <div class="col-sm-5">
-                          <input type="text" name="name" placeholder="Name" class="form-control">
+                          <input type="text" name="name" placeholder="Example: Kupon Learning Tekhnologi" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Code</label>
                           <div class="col-sm-5">
-                            <input type="text" name="code" placeholder="Code Kupons" class="form-control">
+                            <input type="text" name="code" placeholder="Example: Gajian Belajar Terus" class="form-control">
                           </div>
                       </div>
 
                     <div class="form-group">
                       <label for="exampleInputEmail1">Price Kupons</label>
                         <div class="col-sm-5">
-                          <input type="text" name="potongan" placeholder="Price Kupons" class="form-control">
+                          <input type="text" name="potongan" placeholder="Example: 75%" class="form-control">
                         </div>
                     </div>
 
@@ -97,8 +97,8 @@
                     <div class="form-group row">
                       <label for="name_materi" class="col-sm-1 col-form-label">Images Kupons</label>
                       <div class="col-sm-5">
-                        <input type="file" class="form-control-file" name="images">
-                        <small class="help-block">Extension must jpg, jpeg, png</small>
+                        <input type="file" class="form-control-file" id="images" accept="image/svg,image/jpeg" name="images">
+                        <small class="text-danger">Extension must jpg, jpeg, png</small>
                       </div>
                     </div>
 
@@ -120,4 +120,20 @@
       $('#price').val(cls[id])
       // console.log(cls[id]);
     }
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    maxFileSize = 10 * 1024 * 1024 / 2; // 10 mb
+
+    $('#images').change(function() {
+      fileSize = this.files[0].size;
+
+      if (fileSize > maxFileSize) {
+        this.setCustomValidity("You can upload only files under 5 MB");
+        this.reportValidity();
+      } else {
+        this.setCustomValidity("");
+      }
+    });
+  });
 </script>

@@ -24,7 +24,7 @@
       <div class="container-fluid">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Buat</h3>
+                <h3 class="card-title">Create</h3>
             </div>
 
             <div class="row">
@@ -32,23 +32,23 @@
                 <form role="form" class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url('privileges/users/create-new') }}">
                     @csrf
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nama</label>
+                      <label for="exampleInputEmail1">Name</label>
                         <div class="col-sm-5">
-                          <input type="text" name="name" placeholder="Name" class="form-control">
+                          <input type="text" name="name" placeholder="Example: Armen marifin" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
                           <div class="col-sm-5">
-                            <input type="email" name="email" placeholder="Input Your Email" class="form-control">
+                            <input type="email" name="email" placeholder="Example: armenmarifin@gmail.com" class="form-control" required>
                           </div>
                       </div>
 
                     <div class="form-group">
                       <label for="exampleInputEmail1">images</label>
                       <div class="col-sm-5">
-                      <input type="file" name="image" class="form-control">
+                      <input type="file" name="image" id="images" accept="image/svg,image/jpeg" class="form-control" required>
                       <small class="text-danger">size image max 5 mb</small>
                       </div>
                   </div>
@@ -69,7 +69,7 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">Password</label>
                       <div class="col-sm-5">
-                        <input type="password" name="password" placeholder="Input your password" class="form-control">
+                        <input type="password" name="password" placeholder="Example: armenmarifin123" class="form-control" required>
                       </div>
                   </div>
                         
@@ -84,3 +84,20 @@
       </div>
     </section>
   </div>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      maxFileSize = 10 * 1024 * 1024 / 2; // 10 mb
+  
+      $('#images').change(function() {
+        fileSize = this.files[0].size;
+  
+        if (fileSize > maxFileSize) {
+          this.setCustomValidity("You can upload only files under 5 MB");
+          this.reportValidity();
+        } else {
+          this.setCustomValidity("");
+        }
+      });
+    });
+  </script>

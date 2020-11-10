@@ -95,6 +95,7 @@ Route::get('trandings/populers/create-new', [PopulersController::class, 'create_
 Route::post('trandings/populers/create-new', [PopulersController::class, 'create_save'])->middleware('check.auth');
 Route::get('trandings/populers/update/{populers}', [PopulersController::class, 'update_page'])->middleware('check.auth');
 Route::post('trandings/populers/update/{populers}', [PopulersController::class, 'update_save'])->middleware('check.auth');
+Route::delete('trandings/populers/delete/{populers}', [PopulersController::class, 'delete'])->middleware('check.auth');
 
 
 // careers ready program
@@ -103,6 +104,7 @@ Route::get('trandings/careers/create-new', [CareersControlller::class, 'create_p
 Route::post('trandings/careers/create-new', [CareersControlller::class, 'create_save'])->middleware('check.auth');
 Route::get('trandings/careers/update/{careers}', [CareersControlller::class, 'update_page'])->middleware('check.auth');
 Route::post('trandings/careers/update/{careers}', [CareersControlller::class, 'update_save'])->middleware('check.auth');
+Route::delete('trandings/careers/delete/{careers}', [CareersControlller::class, 'delete'])->middleware('check.auth');
 
 // careers ready program
 Route::get('trandings/newclass', [NewclasesController::class, 'index'])->middleware('check.auth')->middleware('check.auth');

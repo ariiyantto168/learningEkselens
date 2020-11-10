@@ -72,9 +72,9 @@
                   </div>
                   
                   <div class="form-group">
-                      <label for="exampleInputEmail1">Gambar Discounts</label>
+                      <label for="exampleInputEmail1">Image Discounts</label>
                       <div class="col-sm-5">
-                      <input type="file" name="images" class="form-control">
+                      <input type="file" name="images" id="images" accept="image/svg,image/jpeg" class="form-control">
                       <br>
                       <img class="img-rounded zoom" id="img-upload" src="{{env('PATH_URL')}}promotions/discounts/{{$discounts->images}}" width="100">
                     </div>
@@ -97,3 +97,21 @@
     $('#price').val(cls[id])
   }
 </script>
+
+  {{-- batasan size images --}}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      maxFileSize = 10 * 1024 * 1024 / 2; // 10 mb
+  
+      $('#images').change(function() {
+        fileSize = this.files[0].size;
+  
+        if (fileSize > maxFileSize) {
+          this.setCustomValidity("You can upload only files under 5 MB");
+          this.reportValidity();
+        } else {
+          this.setCustomValidity("");
+        }
+      });
+    });
+  </script>

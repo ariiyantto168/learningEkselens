@@ -108,5 +108,11 @@ class CareersControlller extends Controller
             // return redirect('categories')->with('status_success','Update categories');
     }
 
+    public function delete(Careers $careers)
+    {
+       $deleteCar = Careers::find($careers->idcareers);
+       $deleteCar->delete();
+       return redirect('trandings/careers')->with('status_success','Successfuly Delete Careers');
+    }
     
 }

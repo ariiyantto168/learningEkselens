@@ -43,29 +43,51 @@
                                       <td>{{ $class->categories->name }}</td> 
                                   </tr>
                                   <tr>
-                                      <td width="20%"><strong> Name</strong></td>
+                                      <td width="20%"><strong> Class Name</strong></td>
                                       <td>{{ $class->name }}</td> 
                                   </tr>
                                   <tr>
-                                      <td width="20%"><strong>Duration</strong></td>
-                                      <td>{{ $class->duration }}</td> 
+                                    <td width="20%"><strong> Class Duration</strong></td>
+                                    <td>{{ $class->duration }}</td> 
                                   </tr>
                                   <tr>
-                                      <td width="20%"><strong> Tutor</strong></td>
-                                      <td>{{ $class->tutor }}</td> 
+                                    <td width="20%"><strong> Price</strong></td>
+                                    <td>Rp. {{ number_format($class->price) }}</td> 
                                   </tr>
                                   <tr>
-                                      <td width="20%"><strong> Description</strong></td>
+                                    <td width="20%"><strong>Duration</strong></td>
+                                    <td>{{ $class->duration }}</td> 
+                                </tr>
+                                <tr>
+                                    <td width="20%"><strong>Instructor</strong></td>
+                                    <td>{{ $class->instructor }}</td> 
+                                </tr>
+                                <tr>
+                                    <td width="20%"><strong>Role Instructor</strong></td>
+                                    <td>{{ $class->roleinstructor }}</td> 
+                                </tr>
+                                  <tr>
+                                    <td width="20%"><strong> About Instructor</strong></td>
+                                    <td>{{ $class->tutor }}</td> 
+                                </tr>
+                                  <tr>
+                                      <td width="20%"><strong> Description Class</strong></td>
                                       <td>{{ $class->description }}</td> 
                                   </tr>
                                   <tr>
-                                      <td width="20%"><strong> Image</strong></td>
+                                    <td width="20%"><strong> Image Instructor</strong></td>
+                                    <td>
+                                      <img  src="{{env('PATH_URL')}}instructor/{{$class->imagesinstructor}}" alt="..." class="img-thumbnail">
+                                    </td> 
+                                </tr>
+                                  <tr>
+                                      <td width="20%"><strong> Image Class</strong></td>
                                       <td>
                                         <img  src="{{env('PATH_URL')}}image/{{$class->images}}" alt="..." class="img-thumbnail">
                                       </td> 
                                   </tr>
                                   <tr>
-                                      <td width="20%"><strong> Demo</strong></td>
+                                      <td width="20%"><strong> Demo Class</strong></td>
                                       <td>
                                         <iframe  src="{{env('PATH_URL')}}demo/{{$class->demo}}" frameborder="0"></iframe>
                                       </td> 
@@ -275,13 +297,13 @@
                                           </td>
                                           <td>
                                               <small><strong>Video 480</strong></small>
-                                              <input type="file" class="form-control-file" name="video_480[]" id="video_480_1">
+                                              <input type="file" class="form-control-file" name="video_480[]" id="video_480_1" onkeyup="video480(1)" required>
                                               <small class="text-danger">Extension Video Only MP4</small>
   
                                           </td>
                                           <td>
                                               <small><strong>Video 720</strong></small>
-                                              <input type="file" class="form-control-file" name="video_720[]" id="video_720_1">
+                                              <input type="file" class="form-control-file" name="video_720[]" id="video_720_1" required>
                                               <small class="text-danger">Extension Video Only MP4</small>
                                           </td>
                                           <td></td>
@@ -352,12 +374,12 @@
                           +'</td>'
                           +'<td>'
                               +'<small><strong>Video 480</strong></small>'
-                              +'<input type="file" class="form-control-file" name="video_480[]" id="video_480_'+materis+'">'
+                              +'<input type="file" class="form-control-file" name="video_480[]" id="video_480_'+materis+'" required>'
                               +'<small class="text-danger">Extension Video Only MP4</small>'
                           +'</td>'
                           +'<td>'
                               +'<small><strong>Video 720</strong></small>'
-                              +'<input type="file" class="form-control-file" name="video_720[]" id="video_720_'+materis+'">'
+                              +'<input type="file" class="form-control-file" name="video_720[]" id="video_720_'+materis+'" required>'
                               +'<small class="text-danger">Extension Video Only MP4</small>'
                           +'</td>'
                           +'<td>'
@@ -368,6 +390,7 @@
               }else{
                   $('#addmateries').attr('disabled',true);
               }
+              
             
           });
   
@@ -435,3 +458,26 @@
   
 </script>
 {{-- close hiligts --}}
+
+
+{{-- batasan file 480 max size 30 mb --}}
+<script type="text/javascript">
+
+function video480()
+{
+    maxFileSize = 10 * 1024 * 1024 * 3; // 30 mb
+      $('#video_480_'+id).change(function() {
+        fileSize = this.files[0].size;
+  
+        if (fileSize > maxFileSize) {
+          this.setCustomValidity("You can upload only files under 30 MB");
+          this.reportValidity();
+        } else {
+          this.setCustomValidity("");
+        }
+      });
+}
+
+
+    
+  </script>

@@ -32,7 +32,7 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Name</label>
                         <div class="col-sm-5">
-                        <input type="text" name="name" value="{{$kupons->name}}" class="form-control">
+                        <input type="text" name="name" value="{{$kupons->name}}" class="form-control" required>
                         </div>
                     </div>
 
@@ -59,14 +59,14 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Code</label>
                           <div class="col-sm-5">
-                          <input type="text" name="code" value="{{$kupons->code}}" class="form-control">
+                          <input type="text" name="code" value="{{$kupons->code}}" class="form-control" required>
                           </div>
                       </div>
 
                     <div class="form-group">
                       <label for="exampleInputEmail1">Price Discounts</label>
                         <div class="col-sm-5">
-                        <input type="text" name="potongan" value="{{$kupons->potongan}}" class="form-control">
+                        <input type="text" name="potongan" value="{{$kupons->potongan}}" class="form-control" required>
                         </div>
                     </div>
 
@@ -78,9 +78,9 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Gambar Kupons</label>
+                        <label for="exampleInputEmail1">Image Kupons</label>
                         <div class="col-sm-5">
-                        <input type="file" name="images" class="form-control">
+                        <input type="file" name="images" id="images" accept="image/svg,image/jpeg" class="form-control">
                         <br>
                         <img class="img-rounded zoom" id="img-upload" src="{{env('PATH_URL')}}promotions/kupons/{{$kupons->images}}" width="100">
                       </div>

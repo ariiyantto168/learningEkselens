@@ -8,7 +8,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active">Trandings</li>
+              <li class="breadcrumb-item active">Trendings</li>
               <li class="breadcrumb-item active"><a href="{{ url('trandings/newclass') }}">New Class</a></li>
               <li class="breadcrumb-item active">Create-new</li>
 
@@ -32,15 +32,15 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Name</label>
                         <div class="col-sm-5">
-                          <input type="text" name="name" placeholder="Name" class="form-control">
+                          <input type="text" name="name" placeholder="Name" class="form-control" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
                       <label>Kelas</label>
                       <div class="col-sm-5">
-                      <select class="form-control" id="idclass" name="idclass" onchange="passing_value(this.value)">
-                        <option>-- select Kelas -- </option>
+                      <select class="form-control" id="idclass" name="idclass" onchange="passing_value(this.value)" required>
+                        <option value="">-- select Kelas -- </option>
                         @php
                           $instructor = [];
                           $roleins = [];

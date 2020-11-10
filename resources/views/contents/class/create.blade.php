@@ -56,72 +56,72 @@
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="name_materi" class="col-sm-2 col-form-label">Nama Kelas</label>
+                          <label for="name_materi" class="col-sm-2 col-form-label">Class Name</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="name" placeholder="Name">
+                            <input type="text" class="form-control" name="name" placeholder="Example: Class Android Kotlin" required>
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="name_materi" class="col-sm-2 col-form-label">Harga</label>
+                          <label for="name_materi" class="col-sm-2 col-form-label">Class Duration (minute)</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="price" placeholder="Harga Kelas">
+                            <input type="number" class="form-control" name="duration" placeholder="Example: 60" required>
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="name_materi" class="col-sm-2 col-form-label">Durasi Kelas (Menit)</label>
+                          <label for="name_materi" class="col-sm-2 col-form-label">Class Image</label>
                           <div class="col-sm-10">
-                            <input type="number" class="form-control" name="duration" placeholder="Durasi Kelas">
+                            <input type="file" class="form-control-file" id="images" name="images" accept="image/svg,image/jpeg" required>
+                            <small class="text-danger">Extension must jpg, jpeg</small>
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Instructor</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="instructor" placeholder="Name Instructor">
+                            <input type="text" class="form-control" name="instructor" placeholder="Example: Armen marifin" required>
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Role Instructor</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="roleinstructor" placeholder="Role Instructor">
+                            <input type="text" class="form-control" name="roleinstructor" placeholder="Example: Software Enginer" required>
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="name_materi" class="col-sm-2 col-form-label">Rating</label>
+                          <label for="name_materi" class="col-sm-2 col-form-label">About Instructor</label>
                           <div class="col-sm-10">
-                            <input type="number" class="form-control" name="rating" placeholder="Rating">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="name_materi" class="col-sm-2 col-form-label">Tutor</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" name="tutor" placeholder="Tutor">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="name_materi" class="col-sm-2 col-form-label">Description</label>
-                          <div class="col-sm-10">
-                            <textarea class="form-control" name="description"  cols="30" rows="10"></textarea>
+                            <input type="text" class="form-control" name="tutor" placeholder="Example: Deskripsi Tutor Instructor" required>
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Images Instructor</label>
                           <div class="col-sm-10">
-                            <input type="file" class="form-control-file" name="imagesinstructor">
-                            <small class="help-block">Extension must jpg, jpeg, png</small>
+                            <input type="file" id="imagesinstructor" accept="image/svg,image/jpeg" class="form-control-file" name="imagesinstructor" required>
+                            <small class="text-danger">Extension must jpg</small>
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="name_materi" class="col-sm-2 col-form-label">Images Kelas</label>
+                          <label for="name_materi" class="col-sm-2 col-form-label">Description</label>
                           <div class="col-sm-10">
-                            <input type="file" class="form-control-file" name="images">
-                            <small class="help-block">Extension must jpg, jpeg, png</small>
+                            <textarea class="form-control" name="description" placeholder="Deskripsi kelas"  cols="10" rows="2" required></textarea>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="name_materi" class="col-sm-2 col-form-label">Price</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="price" placeholder="Example: 200000" required>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="name_materi" class="col-sm-2 col-form-label">Rating</label>
+                          <div class="col-sm-10">
+                            <input type="number" class="form-control" name="rating" placeholder="Example: 5" required>
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Demo</label>
                           <div class="col-sm-10">
-                            <input type="file" class="form-control-file" name="demo">
-                            <small class="help-block">Extension must MP4</small>
+                            <input type="file" class="form-control-file" id="demo" name="demo" accept="video/mp4" required>
+                            <small class="text-danger">Extension must MP4</small>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -186,4 +186,58 @@
       +'</tr>');
       console.log(ais)
     }  --}}
+</script>
+
+{{-- batasan size images instructor --}}
+<script>
+$(document).ready(function() {
+    maxFileSize = 10 * 1024 * 1024 / 2; // 5 mb
+
+    $('#imagesinstructor').change(function() {
+      fileSize = this.files[0].size;
+
+      if (fileSize > maxFileSize) {
+        this.setCustomValidity("You can upload only files under 5 MB");
+        this.reportValidity();
+      } else {
+        this.setCustomValidity("");
+      }
+    });
+  });
+</script>
+
+  {{-- batasan size images --}}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      maxFileSize = 10 * 1024 * 1024 / 2; // 5 mb
+  
+      $('#images').change(function() {
+        fileSize = this.files[0].size;
+  
+        if (fileSize > maxFileSize) {
+          this.setCustomValidity("You can upload only files under 5 MB");
+          this.reportValidity();
+        } else {
+          this.setCustomValidity("");
+        }
+      });
+    });
+  </script>
+
+{{-- batasan demo max size --}}
+<script type="text/javascript">
+  $(document).ready(function() {
+    maxFileSize = 10 * 1024 * 1024 * 3; // 30 mb
+
+    $('#demo').change(function() {
+      fileSize = this.files[0].size;
+
+      if (fileSize > maxFileSize) {
+        this.setCustomValidity("You can upload only files under 30 MB");
+        this.reportValidity();
+      } else {
+        this.setCustomValidity("");
+      }
+    });
+  });
 </script>
