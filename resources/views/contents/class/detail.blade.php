@@ -52,7 +52,7 @@
                                   </tr>
                                   <tr>
                                     <td width="20%"><strong> Price</strong></td>
-                                    <td>Rp. {{ number_format($class->price) }}</td> 
+                                    {{-- <td>Rp. {{ number_format($class->price) }}</td>  --}}
                                   </tr>
                                   <tr>
                                     <td width="20%"><strong>Duration</strong></td>

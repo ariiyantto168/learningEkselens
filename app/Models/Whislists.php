@@ -13,10 +13,11 @@ class Whislists extends Model
     protected $primaryKey = 'idwhislists';
 
     protected $fillable = [
-        'active',
+        'idclass','idusers'
     ];
 
-    protected $casts = [
-        'active' => 'boolean'
-    ];
+    public function users()
+    {
+      return $this->belongsTo('App\Models\User', 'idusers');
+    }   
 }

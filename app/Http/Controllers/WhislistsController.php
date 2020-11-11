@@ -46,24 +46,4 @@ class WhislistsController extends Controller
         return view('contents.masterpage', $pagemain);
     }
 
-    public function create_save(Request $request)
-    {
-
-        $request->validate([
-            'active' => ''
-        ]);
-
-            
-        //active
-        $active = FALSE;
-        if($request->has('active')) {
-            $active = TRUE;
-        }
-
-
-        $saveWhistlists = new Whislists;
-        $saveWhistlists->active = $active;
-        $saveWhistlists->save();
-        return redirect('lecture/whislists');
-    }
 }

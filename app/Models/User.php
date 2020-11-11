@@ -34,5 +34,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Userprofiles','idusers');
     }
 
+    public function whislists()
+    {
+      return $this->hasMany('App\Models\Whislists', 'idusers');
+    }
+
 
 }

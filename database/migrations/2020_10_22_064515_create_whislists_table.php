@@ -15,7 +15,8 @@ class CreateWhislistsTable extends Migration
     {
         Schema::create('whislists', function (Blueprint $table) {
             $table->increments('idwhislists');
-            $table->boolean('active');
+            $table->integer('idusers');
+            $table->integer('idclass');
             $table->timestamps();
         });
     }
