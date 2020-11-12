@@ -18,6 +18,9 @@ class CreateClassTable extends Migration
             $table->integer('idcategories');
             $table->string('name');
             $table->string('slug');
+            $table->string('namemitra')->nullable();
+            $table->text('descriptionmitra')->nullable();
+            $table->string('imagesmitra')->nullable();
             $table->string('instructor');
             $table->string('imagesinstructor');
             $table->string('roleinstructor');

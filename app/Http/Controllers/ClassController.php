@@ -53,7 +53,7 @@ class ClassController extends Controller
         return view('contents.masterpage', $pagemain);
     }
 
-    public function create_save(Request $request)
+    public function create_save(Request $request, Classes $class)
     {
 
         $request->validate([
@@ -84,6 +84,15 @@ class ClassController extends Controller
             $file->move($destinasi, $fileins);
         }
 
+        if($request->hasFile('imagesmitra')){
+            $file = $request->file('imagesmitra');
+            $filemitra = time()."_".$file->getClientOriginalName();
+            $destinasi = env('CDN_URL').'mitra/'; 
+            $file->move($destinasi, $filemitra);
+        }else{
+            $filemitra = $class->images;
+        }
+
         if($request->hasFile('demo')){
             $demo = $request->file('demo');
             $demo_file = time()."_".$demo->getClientOriginalName();
@@ -96,6 +105,8 @@ class ClassController extends Controller
         $save_class->name = $request->name;
         $save_class->slug =  $slug = Str::slug($request->name, '-');
         $save_class->tutor = $request->tutor;
+        $save_class->namemitra = $request->namemitra;
+        $save_class->descriptionmitra = $request->descriptionmitra;
         $save_class->instructor = $request->instructor;
         $save_class->roleinstructor = $request->roleinstructor;
         $save_class->price = $request->price;
@@ -105,6 +116,7 @@ class ClassController extends Controller
         $save_class->images = $filename;
         $save_class->imagesinstructor = $fileins;
         $save_class->demo = $demo_file;
+        $save_class->imagesmitra = $filemitra;
         $save_class->save();
 
         // return redirect('class/detail/'.$save_class->idclass);

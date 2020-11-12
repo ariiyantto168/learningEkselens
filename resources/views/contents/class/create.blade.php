@@ -75,6 +75,25 @@
                           </div>
                         </div>
                         <div class="form-group row">
+                          <label for="name_materi" class="col-sm-2 col-form-label">Name Mitra</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="namemitra" placeholder="Example: Ekselen.id">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="name_materi" class="col-sm-2 col-form-label">Description Mitra</label>
+                          <div class="col-sm-10">
+                            <textarea class="form-control" name="descriptionmitra" placeholder="Description Mitra"  cols="10" rows="2"></textarea>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="name_materi" class="col-sm-2 col-form-label">Image Mitra</label>
+                          <div class="col-sm-10">
+                            <input type="file" class="form-control-file" id="images" name="imagesmitra" accept="image/svg,image/jpeg">
+                            <small class="text-danger">Extension must jpg, jpeg</small>
+                          </div>
+                        </div>
+                        <div class="form-group row">
                           <label for="name_materi" class="col-sm-2 col-form-label">Instructor</label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" name="instructor" placeholder="Example: Armen marifin" required>

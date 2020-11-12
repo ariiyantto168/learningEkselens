@@ -42,7 +42,7 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Gambar Kategori</label>
                       <div class="col-sm-5">
-                      <input type="file" id="images" name="images" accept="image/svg,image/jpeg" class="form-control" required>
+                      <input type="file" value="{{$categories->images}}" id="images" name="images" accept="image/svg,image/jpeg" class="form-control" required>
                       <br>
                       <img class="img-rounded zoom" id="img-upload" src="{{env('PATH_URL')}}image/{{$categories->images}}" width="100">
                     </div>
